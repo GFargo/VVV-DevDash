@@ -1,5 +1,6 @@
 # VVV DevDash - Custom Dashboard
-Forked from [@TopDown](https://github.com/topdown/VVV-Dashboard)
+**Forked from [@TopDown](https://github.com/topdown/VVV-Dashboard)**
+
 
 This is a Varying Vagrant Vagrants Dashboard for the excellent [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV)
 

@@ -123,7 +123,7 @@ $hosts = get_hosts( $path );
 	<link rel="stylesheet" type="text/css" href="style.css?ver=5" />
 	<script type="text/JavaScript" src="bower_components/jquery/dist/jquery.min.js"></script>
 
-	<script type="text/javascript" src="src/js/scripts.js"></script>
+	<script type="text/javascript" src="assets/js/scripts.js"></script>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
