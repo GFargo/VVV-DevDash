@@ -1,3 +1,6 @@
+# VVV DevDash - Custom Dashboard
+Forked from [@TopDown](https://github.com/topdown/VVV-Dashboard)
+
 This is a Varying Vagrant Vagrants Dashboard for the excellent [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV)
 
 Its purpose is to dynamically load host links to all sites created in the VVV www path.
@@ -12,6 +15,7 @@ Copy the dashboard-custom.php to VVV/www/default/dashboard-custom.php
 
 ---
 ### UPDATE Instructions 
+#### TODO: Make this automatic via Grunt/Shell Script
 From your dashboard directory ```git pull```
 
 You no longer need to copy the style.css anywhere.

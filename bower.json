@@ -1,0 +1,40 @@
+{
+  "name": "VVV - DevDash",
+  "homepage": "https://github.com/gfargo/VVV-DevDash",
+  "authors": [
+    "TopDown https://github.com/topdown",
+    "GFargo https://github.com/gfargo"
+  ],
+  "description": "Custom Varying Vagrants Vagrant Dashboard",
+  "main": [
+    "style.css",
+    "src/js/scripts.js",
+    "dashboard-custom.php",
+    "index.php"
+  ],
+  "moduleType": [],
+  "keywords": [
+    "Custom",
+    "Dashboard",
+    "VVV",
+    "VVV",
+    "Dashboard",
+    "Varying",
+    "Vagrants",
+    "Vagrant",
+    "Dashboard"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap-sass": "~3.3.5"
+  },
+}
