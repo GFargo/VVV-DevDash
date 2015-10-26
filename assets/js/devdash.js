@@ -70,7 +70,7 @@
     // All pages
     'common': {
       init: function() {
-        // JavaScript to be fired on all pages
+
       },
       finalize: function() {
         // Create listener for search fiel
