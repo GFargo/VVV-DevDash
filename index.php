@@ -118,12 +118,12 @@ $hosts = get_hosts( $path );
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Varying Vagrant Vagrants Dashboard</title>
+	<title>DevDash</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="style.css?ver=5" />
-	<script type="text/JavaScript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css" />
 
-	<script type="text/javascript" src="assets/js/scripts.js"></script>
+	<script type="text/JavaScript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/devdash.js"></script>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">

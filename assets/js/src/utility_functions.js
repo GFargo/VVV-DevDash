@@ -1,7 +1,9 @@
+
+
 jQuery.fn.highlight = function (pat) {
 	function innerHighlight(node, pat) {
 		var skip = 0;
-		if (node.nodeType == 3) {
+		if (node.nodeType === 3) {
 			var pos = node.data.toUpperCase().indexOf(pat);
 			if (pos >= 0) {
 				var spannode = document.createElement('span');
@@ -14,7 +16,7 @@ jQuery.fn.highlight = function (pat) {
 				skip = 1;
 			}
 		}
-		else if (node.nodeType == 1 && node.childNodes && !/(script|style)/i.test(node.tagName)) {
+		else if (node.nodeType === 1 && node.childNodes && !/(script|style)/i.test(node.tagName)) {
 			for (var i = 0; i < node.childNodes.length; ++i) {
 				i += innerHighlight(node.childNodes[i], pat);
 			}
@@ -27,19 +29,52 @@ jQuery.fn.highlight = function (pat) {
 	});
 };
 
+jquery.fn.fuzzySearch = function (ev) {
+	// pull in the new value
+	var searchTerm = $(this).val(),
+		site_list = $('.sites');
+
+	// remove any old highlighted terms
+	$(site_list).removeHighlight();
+	$('tr').removeClass('highlight');
+
+	// disable highlighting if empty
+	if (searchTerm) {
+		// highlight the new term
+		$(site_list).highlight(searchTerm);
+	}
+
+	// Highlight the table row
+	if ($('.sites td span.highlight').length) {
+
+		$('.sites td span.highlight').closest('tr').addClass('highlight');
+	}
+
+	if ($('.sites table tr').not('.highlight')) {
+		$('.sites tr').addClass('hide');
+	}
+
+	$('.sites tr.highlight').removeClass('hide');
+
+	if($('#text-search').val() === '') {
+		$('.sites tr').removeClass('hide');
+	}
+
+};
+
 jQuery.fn.removeHighlight = function () {
 	function newNormalize(node) {
 		for (var i = 0, children = node.childNodes, nodeCount = children.length; i < nodeCount; i++) {
 			var child = children[i];
-			if (child.nodeType == 1) {
+			if (child.nodeType === 1) {
 				newNormalize(child);
 				continue;
 			}
-			if (child.nodeType != 3) {
+			if (child.nodeType !== 3) {
 				continue;
 			}
 			var next = child.nextSibling;
-			if (next == null || next.nodeType != 3) {
+			if (next == null || next.nodeType !== 3) {
 				continue;
 			}
 			var combined_text = child.nodeValue + next.nodeValue;
@@ -78,37 +113,3 @@ $.fn.scrollViewDown = function () {
 	});
 };
 
-$(function () {
-	$('#text-search').bind('keyup change', function (ev) {
-		// pull in the new value
-		var searchTerm = $(this).val(),
-			site_list = $('.sites');
-
-		// remove any old highlighted terms
-		$(site_list).removeHighlight();
-		$('tr').removeClass('highlight');
-
-		// disable highlighting if empty
-		if (searchTerm) {
-			// highlight the new term
-			$(site_list).highlight(searchTerm);
-		}
-
-		// Highlight the table row
-		if ($('.sites td span.highlight').length) {
-
-			$('.sites td span.highlight').closest('tr').addClass('highlight');
-		}
-
-		if ($('.sites table tr').not('.highlight')) {
-			$('.sites tr').addClass('hide');
-		}
-
-		$('.sites tr.highlight').removeClass('hide');
-
-		if($('#text-search').val() == '') {
-			$('.sites tr').removeClass('hide');
-		}
-
-	});
-});

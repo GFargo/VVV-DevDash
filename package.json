@@ -1,0 +1,29 @@
+{
+  "name": "devdash",
+  "title": "VVV DevDash",
+  "url": "https://github.com/GFargo/VVV-DevDash",
+  "version": "0.0.1",
+  "description": "Custom Dashboard for Varying Vargrants Vagrant",
+  "author": "GFargo <ghfargo@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GFargo/VVV-DevDash"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^2.2.0",
+    "grunt-concat-sourcemap": "^0.4.3",
+    "grunt-contrib-compass": "^1.0.1",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-less": "^1.0.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-qunit": "^0.5.2",
+    "grunt-contrib-sass": "^0.9.2",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-csscss": "^0.6.2",
+    "grunt-uncss": "^0.4.1",
+    "time-grunt": "^1.1.0"
+  }
+}
