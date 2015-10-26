@@ -1,5 +1,7 @@
-# VVV DevDash - Custom Dashboard
-**Forked from [@TopDown](https://github.com/topdown/VVV-Dashboard)**
+# VVV DevDash
+######Custom Dashboard for Varying Vagrants Vagrant - Forked from [@TopDown](https://github.com/topdown/VVV-Dashboard)######
+---
+
 
 
 This is a Varying Vagrant Vagrants Dashboard for the excellent [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV)
@@ -7,6 +9,7 @@ This is a Varying Vagrant Vagrants Dashboard for the excellent [Varying Vagrant 
 Its purpose is to dynamically load host links to all sites created in the VVV www path.
 
 It also suggests the wonderful add-on bash script [VVV Site Wizard](https://github.com/aliso/vvv-site-wizard) for creating new sites.
+
 
 Instructions
 -
