@@ -14,15 +14,15 @@
   ],
   "moduleType": [],
   "keywords": [
-    "DevDash"
-    "VVV-DevDash"
+    "DevDash",
+    "VVV-DevDash",
     "VVV",
     "VVV Management",
     "Vagrant",
     "Vagrants",
     "Varying Vagrants",
-    "Dashboard"
-    "Custom Dashboard",
+    "Dashboard",
+    "Custom Dashboard"
   ],
   "license": "MIT",
   "private": true,

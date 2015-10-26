@@ -183,7 +183,10 @@ $hosts = get_hosts( $path );
 				</p>
 				<small>Note: To profile, <code>xdebug_on</code> must be set.</small>
 
-				<p class="search-box">Live Search: <input type="text" id="text-search" />
+				<p id="search_container" class="search-box">
+					Live Search:
+
+					<input type="text" class="search-input" id="text-search" />
 					<!--<input id="search" type="button" value="Search" />
 					<input id="back" type="button" value="Search Up" /> &nbsp;
 					<small>Enter, Up and Down keys are bound.</small>-->
