@@ -5,7 +5,7 @@
     "TopDown https://github.com/topdown",
     "GFargo https://github.com/gfargo"
   ],
-  "description": "Custom Varying Vagrants Vagrant Dashboard",
+  "description": "Custom Dashboard for Varying Vagrants Vagrant [VVV]",
   "main": [
     "style.css",
     "assets/js/scripts.js",
@@ -14,15 +14,15 @@
   ],
   "moduleType": [],
   "keywords": [
-    "Custom",
-    "Dashboard",
+    "DevDash"
+    "VVV-DevDash"
     "VVV",
-    "VVV",
-    "Dashboard",
-    "Varying",
-    "Vagrants",
+    "VVV Management",
     "Vagrant",
+    "Vagrants",
+    "Varying Vagrants",
     "Dashboard"
+    "Custom Dashboard",
   ],
   "license": "MIT",
   "private": true,
