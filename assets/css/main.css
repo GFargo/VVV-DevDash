@@ -3940,6 +3940,51 @@ a.label:hover, a.label:focus {
   background-color: #c9302c;
 }
 
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  background-color: #777777;
+  border-radius: 10px;
+}
+.badge:empty {
+  display: none;
+}
+.btn .badge {
+  position: relative;
+  top: -1px;
+}
+.btn-xs .badge, .btn-group-xs > .btn .badge, .btn-group-xs > .btn .badge {
+  top: 0;
+  padding: 1px 5px;
+}
+.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
+  color: #4E5C99;
+  background-color: #fff;
+}
+.list-group-item > .badge {
+  float: right;
+}
+.list-group-item > .badge + .badge {
+  margin-right: 5px;
+}
+.nav-pills > li > a > .badge {
+  margin-left: 3px;
+}
+
+a.badge:hover, a.badge:focus {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .list-group {
   margin-bottom: 20px;
   padding-left: 0;
@@ -4456,7 +4501,7 @@ a:visited, a:focus, a:hover {
   border-color: #282f4f;
 }
 .navbar-inverse .navbar-brand {
-  color: #5a9114;
+  color: #3e640e;
 }
 .navbar-inverse .navbar-brand:hover {
   color: #91E12A;
@@ -4529,11 +4574,11 @@ a:visited, a:focus, a:hover {
 }
 .sidebar.closed {
   overflow: hidden;
-  -webkit-transform: translateX(-93%);
-  -moz-transform: translateX(-93%);
-  -ms-transform: translateX(-93%);
-  -o-transform: translateX(-93%);
-  transform: translateX(-93%);
+  -webkit-transform: translateX(-90%);
+  -moz-transform: translateX(-90%);
+  -ms-transform: translateX(-90%);
+  -o-transform: translateX(-90%);
+  transform: translateX(-90%);
 }
 .sidebar.closed .close {
   display: none;
@@ -4544,8 +4589,9 @@ a:visited, a:focus, a:hover {
 
 .sidebar-controls {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 6px;
+  right: 8px;
+  font-size: 1.1em;
 }
 
 .sidebar-title {

@@ -59,6 +59,10 @@
         $('.header-nav').find('.nav-link').on('click', function(event) {
           if (event.target.name !== 'phpMyAdmin') {
             event.preventDefault();
+            if (!$('.main').hasClass('full')) {
+              $('.sidebar-control.close' ,'.sidebar-controls').click();
+            }
+
             var targetPath = 'http://vvv.dev/dashboard/views/content.php',
                 moduleName = event.target.name;
             console.log('moduleName', moduleName);

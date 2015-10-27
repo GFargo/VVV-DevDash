@@ -21,7 +21,7 @@ a {
     border-color: darken($brand-primary, 22%);
 
     .navbar-brand {
-        color: darken($brand-success, 20%);
+        color: darken($brand-success, 30%);
         &:hover {
             color: $brand-success;
         }
@@ -103,19 +103,20 @@ a {
     }
     &.closed {
         overflow: hidden;
-        -webkit-transform: translateX(-93%);
-           -moz-transform: translateX(-93%);
-            -ms-transform: translateX(-93%);
-             -o-transform: translateX(-93%);
-                transform: translateX(-93%);
+        -webkit-transform: translateX(-90%);
+           -moz-transform: translateX(-90%);
+            -ms-transform: translateX(-90%);
+             -o-transform: translateX(-90%);
+                transform: translateX(-90%);
         .close { display: none; }
         .open { display: block; }
     }
 }
 .sidebar-controls {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 6px;
+    right: 8px;
+    font-size: 1.1em;
 }
 
 

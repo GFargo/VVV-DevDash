@@ -37,17 +37,13 @@ if (isset($_POST['module']) && ($_POST['module'] != 'phpMyAdmin' && $_POST['modu
     $hosts = get_hosts( '../../' );
 ?>
     <p>
-        <strong>Current Hosts = <?php echo isset( $hosts['site_count'] ) ? $hosts['site_count'] : ''; ?></strong>
+        <strong>Current Hosts <span class="badge"><?php echo isset( $hosts['site_count'] ) ? $hosts['site_count'] : ''; ?></span></strong>
     </p>
     <small>Note: To profile, <code>xdebug_on</code> must be set.</small>
 
     <div id="search_container" class="search-box">
-        <label class="label">Live Search:</label>
-
+        <label>live search</label>
         <input type="text" class="search-input" id="text-search" />
-        <!--<input id="search" type="button" value="Search" />
-        <input id="back" type="button" value="Search Up" /> &nbsp;
-        <small>Enter, Up and Down keys are bound.</small>-->
     </div>
 
     <table class="sites table table-responsive table-striped">
