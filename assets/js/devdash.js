@@ -114,6 +114,8 @@
           $content.toggleClass('full');
         });
 
+        $('.tip').tooltip();
+
       },
       finalize: function() {
         // Create listener for search fiel

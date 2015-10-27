@@ -36,15 +36,17 @@ if (isset($_POST['module']) && ($_POST['module'] != 'phpMyAdmin' && $_POST['modu
 
     $hosts = get_hosts( '../../' );
 ?>
-    <p>
-        <strong>Current Hosts <span class="badge"><?php echo isset( $hosts['site_count'] ) ? $hosts['site_count'] : ''; ?></span></strong>
-    </p>
-    <small>Note: To profile, <code>xdebug_on</code> must be set.</small>
 
-    <div id="search_container" class="search-box">
-        <label>live search</label>
-        <input type="text" class="search-input" id="text-search" />
-    </div>
+
+    <div id="search_container" class="input-group search-box">
+        <span class="input-group-addon">
+            <i class="fa fa-search"></i>
+        </span>
+        <input type="text" class="form-control search-input" id="text-search" placeholder="Search active machines..."/>
+        <span class="input-group-addon">
+            Hosts <span class="badge"><?php echo isset( $hosts['site_count'] ) ? $hosts['site_count'] : ''; ?></span>
+        </span>
+    </div><!-- /input-group -->
 
     <table class="sites table table-responsive table-striped">
         <thead>
@@ -72,7 +74,10 @@ if (isset($_POST['module']) && ($_POST['module'] != 'phpMyAdmin' && $_POST['modu
                         <?php if ( 'true' == $array['is_wp'] ) { ?>
                             <a class="btn btn-warning btn-xs" href="http://<?php echo $array['host']; ?>/wp-admin" target="_blank"><i class="fa fa-wordpress"></i> Admin</a>
                         <?php } ?>
-                        <a class="btn btn-success btn-xs" href="http://<?php echo $array['host']; ?>/?XDEBUG_PROFILE" target="_blank">Profiler <i class="fa fa-search-plus"></i></a>
+                        <a class="btn btn-success btn-xs tip" href="http://<?php echo $array['host']; ?>/?XDEBUG_PROFILE" target="_blank"
+                            data-toggle="tooltip" title="`xdebug_on` must be turned on" data-placement="top">
+                            Profiler <i class="fa fa-search-plus"></i>
+                        </a>
                     </td>
                 </tr>
                 <?php

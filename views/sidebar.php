@@ -7,11 +7,11 @@
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title sidebar-title">
+      <h3 class="panel-title sidebar-title">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Useful Vagrant Commands
+          Vagrant Commands
         </a>
-      </h4>
+      </h3>
     </div>
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
@@ -61,20 +61,18 @@
   </div>
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title sidebar-title">
+      <h3 class="panel-title sidebar-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           References &amp; Extras
         </a>
-      </h4>
+      </h3>
     </div>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
 
         <ul class="nav">
             <li><a href="https://github.com/varying-vagrant-vagrants/vvv/#now-what" target="_blank">Commands Link</a></li>
-            <li><code>xdebug_on</code>
-                <a href="https://github.com/Varying-Vagrant-Vagrants/VVV/wiki/Code-Debugging#turning-on-xdebug" target="_blank">xDebug Link</a>
-            </li>
+            <li><a href="https://github.com/Varying-Vagrant-Vagrants/VVV/wiki/Code-Debugging#turning-on-xdebug" target="_blank">Turning on xDebug</a></li>
         </ul>
 
 

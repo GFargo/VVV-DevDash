@@ -76,10 +76,23 @@ a {
  */
 
 .search-box {
-    margin: 10px 0;
+    margin: 6px 0 10px;
+    position: relative;
+    width: 100%;
+
+    .search-input {
+        // border: none;
+        // border-bottom: 1px solid $brand-primary;
+        // padding: 4px;
+        &:focus,
+        &:active,
+        &:hover {
+            outline: none;
+        }
+    }
 }
 .sites tr.highlight {
-    background: transparentize($brand-primary, .8)!important;
+    background: transparentize($brand-success, .8)!important;
 
     .highlight {
         background: yellow;
@@ -114,14 +127,18 @@ a {
 }
 .sidebar-controls {
     position: absolute;
-    top: 6px;
-    right: 8px;
+    top: 0;
+    left: 0;
     font-size: 1.1em;
+    width: 100%;
+    text-align: right;
+    padding: 2px 8px;
+    background-color: darken($color-lgray, 5%);
 }
 
 
 .sidebar-title {
-    margin:         10px;
+    // margin:         10px;
     font-size:      20px;
     font-weight:    bold;
     padding-bottom: 10px;

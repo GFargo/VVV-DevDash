@@ -1,5 +1,6 @@
 # VVV DevDash
 ######Custom Dashboard for Varying Vagrants Vagrant - Forked from [@TopDown](https://github.com/topdown/VVV-Dashboard)######
+---
 
 
 
@@ -29,53 +30,23 @@ Now move your dashboard directory so it is inside VVV/www/default/
 
 ---
 
-With Vagrant Up you should be able browse to your vagrant root www usually [vvv](http://vvv) or [vvv.dev](http://vvv.dev) and see the new dashboard.
-
-** NEW: There are bound keys for the search feature, the enter key and down arrow key search down the list and the up arrow searches up.**
-
-
-![image](https://raw.githubusercontent.com/topdown/VVV-Dashboard/master/screenshot.png)
-
-![image](https://raw.githubusercontent.com/topdown/VVV-Dashboard/master/live-search.gif)
+After running the install script and `vagrant up` you should be able browse to [vvv.dev](http://vvv.dev) and start using DevDash.
 
 ---
-** NOTE: ** This Dashboard project has no affiliation with Varying Vagrant Vagrants or any other components listed here.
+_**NOTE:** This Dashboard project has no affiliation with Varying Vagrant Vagrants or any other components listed here._
 
 ---
 
 ### Change Log
 
 ---
-5/18/2015
+10/27/2015
 
-* Added VV Command table
-* Changed host list to responsive tables
-* Changed host search to a live search
+**Forked TopDown VVV Dashboard**
 
----
-5/17/2015
-
-* created develop branch
-
----
-5/16/2015
-
-* Refactored getHosts function to also check if WP_DEBUG is true in each host
-* Added it to the host list.
-* Added host count
-* Updated Screenshot
-* Made the main view port wider moving commands to the sidebar
-* Support for none WordPress sites
-
----
-5/15/2015
-
-* Update bower components
-* Added jQuery
-* Added Search Hosts feature
-* Added max-height with automated scroll
-* Updated install instruction and ReadMe
-* Updated Screenshot
-
---- 
-Version: 0.0.5
+* Major Design Refresh
+* externalize parts of HTML into php files that are `required` via the main `index.php`
+* Adds functionality to collapse sidebar
+* Displays all possible tools linked in header nav as Iframes in `content.php`  _the one exception being phpMyAdmin_.
+* Converts sidebar content into collapsing lists
+* Updates `sidebar.php` offering additional links and decscriptions for vagrant commands.

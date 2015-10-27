@@ -1,4 +1,7 @@
-<h2><a target="_blank" href="https://github.com/bradp/vv">Variable VVV</a> <small>Automate Site Creation</small></h2>
+<h2>
+    <a target="_blank" href="https://github.com/bradp/vv">Variable VVV</a>
+    <small>Automate Site Creation <a href="https://github.com/bradp/vv" target="_blank"><i class="fa fa-github"></i></a></small>
+</h2>
 
 <h4>Useful Variable VVV Commands</h4>
 
