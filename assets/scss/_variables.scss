@@ -1,8 +1,16 @@
-$color-lgray: #f5f5f5;
-$color-dgray: #cdcdcd;
-$color-white: #fff;
-$color-black: #222;
+$color-lgray:           #f5f5f5;
+$color-dgray:           #cdcdcd;
+$color-white:           #fff;
+$color-black:           #222;
 
+
+// $brand-primary:         darken(#428bca, 6.5%) !default; // #337ab7
+$brand-primary:         #4E5C99;
+// $brand-success:         #5cb85c !default;
+$brand-success:         #91E12A;
+// $brand-info:            $brand-primary;
+$brand-warning:         #f0ad4e !default;
+$brand-danger:          #d9534f !default;
 
 
 
@@ -10,3 +18,4 @@ $color-black: #222;
 $zindex-content-container: 50;
 $zindex-header: 75;
 $zindex-footer: 100;
+

@@ -112,6 +112,4 @@ function get_hosts( $path ) {
     return $array;
 }
 
-$hosts = get_hosts( $path );
-
 ?>

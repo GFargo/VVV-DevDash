@@ -1,6 +1,6 @@
 /*!
  * VVV DevDash
- * Custom Dashboard for Varying Vargrants Vagrant
+ * Custom Dashboard for Varying Vargrant Vagrants
  * https://github.com/GFargo/VVV-DevDash
  * @author GFargo <ghfargo@gmail.com>
  * @version 0.0.1
@@ -62,6 +62,36 @@
         });
       },
 
+    },
+    'header': {
+      init: function() {
+        $('.header-nav').find('.nav-link').on('click', function(event) {
+          if (event.target.name !== 'phpMyAdmin') {
+            event.preventDefault();
+            var targetPath = 'http://vvv.dev/dashboard/views/content.php',
+                moduleName = event.target.name;
+            console.log('moduleName', moduleName);
+            $.ajax({
+              url: targetPath,
+              type: 'POST',
+              dataType: 'html',
+              data: {
+                module: moduleName
+              }
+            })
+            .done(function(response) {
+              console.log("success");
+              $('.main_content').html(response);
+            })
+            .fail(function() {
+              console.log("error");
+            })
+            .always(function() {
+              console.log("complete");
+            });
+          }
+        });
+      },
     }
   };
 
@@ -70,11 +100,21 @@
     // All pages
     'common': {
       init: function() {
+        var $sidebar = $('.sidebar'),
+            $content = $('.main');
+
+        // <3 jQuery
+        $('.sidebar-control' ,'.sidebar-controls').click(function(event) {
+          event.preventDefault();
+          $sidebar.toggleClass('open closed');
+          $content.toggleClass('full');
+        });
 
       },
       finalize: function() {
         // Create listener for search fiel
         DevDashUtilities.search.init();
+        DevDashUtilities.header.init();
       }
     },
     // Home page

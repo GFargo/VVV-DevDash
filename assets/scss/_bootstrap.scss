@@ -3,9 +3,14 @@
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
+
+
 // Reset
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/normalize";
 //@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/print";
+
+// Custom Variables
+@import "_variables";
 
 // Core CSS
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
@@ -17,7 +22,7 @@
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
 
 // Components
-//@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
 //@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
 //@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
@@ -34,8 +39,8 @@
 //@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/alerts";
 //@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
 //@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/media";
-//@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/list-group";
-//@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/panels";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/list-group";
+// @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/panels";
 //@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/wells";
 //@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/close";
 
