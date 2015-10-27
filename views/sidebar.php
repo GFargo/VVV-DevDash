@@ -71,19 +71,27 @@
       <div class="panel-body">
 
         <ul class="nav">
-            <li><a href="https://github.com/varying-vagrant-vagrants/vvv/#now-what" target="_blank">Commands Link</a></li>
+            <li><a href="https://github.com/varying-vagrant-vagrants/vvv/#now-what" target="_blank">VVV Now What?</a></li>
             <li><a href="https://github.com/Varying-Vagrant-Vagrants/VVV/wiki/Code-Debugging#turning-on-xdebug" target="_blank">Turning on xDebug</a></li>
         </ul>
 
 
+        <h5 class="category-header">Repos</h5>
         <ul class="nav">
-            <li><a target="_blank" href="https://github.com/bradp/vv">Variable VVV (newest)</a></li>
-            <li><a href="https://github.com/varying-vagrant-vagrants/vvv/" target="_blank">Varying Vagrant Vagrants</a>
-            </li>
-            <li><a href="https://github.com/topdown/VVV-Dashboard" target="_blank">VVV Dashboard Repo</a></li>
-            <li><a href="https://github.com/topdown/VVV-Dashboard/issues" target="_blank">VVV Dashboard Issues</a></li>
             <li>
-                <a href="https://github.com/aubreypwd/wordpress-themereview-vvv" target="_blank">VVV WordPress ThemeReview</a>
+              <a href="https://github.com/bradp/vv" target="_blank"><i class="fa fa-github"></i> Variable VVV</a>
+            </li>
+            <li>
+              <a href="https://github.com/varying-vagrant-vagrants/vvv/" target="_blank"><i class="fa fa-github"></i> Varying Vagrant Vagrants</a>
+            </li>
+            <li>
+              <a href="https://github.com/gfargo/VVV-DevDash" target="_blank"><i class="fa fa-github"></i> DevDash</a>
+            </li>
+            <li>
+              <a href="https://github.com/gfargo/VVV-DevDash/issues" target="_blank"><i class="fa fa-info-circle"></i> DevDash Issues</a>
+            </li>
+            <li>
+                <a href="https://github.com/aubreypwd/wordpress-themereview-vvv" target="_blank"><i class="fa fa-github"></i> VVV WordPress ThemeReview</a>
             </li>
         </ul>
       </div>
