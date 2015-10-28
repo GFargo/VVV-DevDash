@@ -13,7 +13,7 @@
         </a>
       </h3>
     </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
 
         <div class="list-group">
@@ -48,7 +48,7 @@
           <li class="list-group-item">
             <h4 class="list-group-item-heading">vagrant suspend/resume <small><a href="https://docs.vagrantup.com/v2/cli/suspend.html" alt="Vagrant Documentation" target="_blank"><i class="fa fa-book"></i></a></small></h4>
             <p class="list-group-item-text">
-              <code>suspend</code> effectively saves the exact point-in-time state of the machine, so that when you <code>resume</code> it later, it begins running immediately from that point, rather than a full boot.
+              <code>suspend</code> saves the exact point-in-time state of the machine. <code>resume</code> starts the machine at the point it suspended.
             </p>
           </li>
 
@@ -71,27 +71,31 @@
       <div class="panel-body">
 
         <ul class="nav">
+            <h5 class="category-header">Helpful Links</h5>
             <li><a href="https://github.com/varying-vagrant-vagrants/vvv/#now-what" target="_blank">VVV Now What?</a></li>
             <li><a href="https://github.com/Varying-Vagrant-Vagrants/VVV/wiki/Code-Debugging#turning-on-xdebug" target="_blank">Turning on xDebug</a></li>
         </ul>
 
-
-        <h5 class="category-header">Repos</h5>
         <ul class="nav">
-            <li>
-              <a href="https://github.com/bradp/vv" target="_blank"><i class="fa fa-github"></i> Variable VVV</a>
-            </li>
+          <h5 class="category-header">Wordpress</h5>
+          <li>
+              <a href="https://github.com/aubreypwd/wordpress-themereview-vvv" target="_blank"><i class="fa fa-github"></i> VVV WordPress ThemeReview</a>
+          </li>
+        </ul>
+
+        <ul class="nav">
+            <h5 class="category-header">VVV Repos</h5>
             <li>
               <a href="https://github.com/varying-vagrant-vagrants/vvv/" target="_blank"><i class="fa fa-github"></i> Varying Vagrant Vagrants</a>
+            </li>
+            <li>
+              <a href="https://github.com/bradp/vv" target="_blank"><i class="fa fa-github"></i> Variable VVV</a>
             </li>
             <li>
               <a href="https://github.com/gfargo/VVV-DevDash" target="_blank"><i class="fa fa-github"></i> DevDash</a>
             </li>
             <li>
-              <a href="https://github.com/gfargo/VVV-DevDash/issues" target="_blank"><i class="fa fa-info-circle"></i> DevDash Issues</a>
-            </li>
-            <li>
-                <a href="https://github.com/aubreypwd/wordpress-themereview-vvv" target="_blank"><i class="fa fa-github"></i> VVV WordPress ThemeReview</a>
+              <a href="https://github.com/gfargo/VVV-DevDash/issues" target="_blank"><i class="fa fa-info-circle"></i> Issues</a>
             </li>
         </ul>
       </div>
