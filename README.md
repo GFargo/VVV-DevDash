@@ -4,43 +4,68 @@
 
 
 
-This is a Varying Vagrant Vagrants Dashboard for the excellent [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV)
+This is a Varying Vagrant Vagrants Dashboard for the most excellent [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV).
 
 Its purpose is to dynamically load host links to all sites created in the VVV www path.
 
-It also suggests the wonderful add-on bash script [VVV Site Wizard](https://github.com/aliso/vvv-site-wizard) for creating new sites.
-
-
-Instructions
--
-Clone this repo to your VVV/www/default/ directory (`git clone https://github.com/topdown/VVV-Dashboard.git dashboard`)
-
-Copy the dashboard-custom.php to VVV/www/default/dashboard-custom.php
+The purpose of DevDash is to alleviate all the pain points of using VVV when developing wordpress themes and plugins.  It helps with the heavy lifting of creating new hosts, dynmically displaying current hosts, and providing links to the wonderful tools provided by VVV.
 
 ---
-### UPDATE Instructions 
-#### TODO: Make this automatic via Grunt/Shell Script
-From your dashboard directory ```git pull```
+_**Note:** DevDash has no affiliation with Varying Vagrant Vagrants or any other components listed here._
 
-You no longer need to copy the style.css anywhere.
+# Installation
+Clone this repo to your VVV/www/default/ directory
 
-Delete the old VVV/www/default/dashboard-custom.php and copy the new version to VVV/www/default/dashboard-custom.php
+Navigate to `/path/to/vvv/www/default` directory and run the following command in terminal.
 
-Now move your dashboard directory so it is inside VVV/www/default/
+```
+$ git clone https://github.com/gfargo/VVV-DevDash.git dashboard ; build/sh/_install.sh
+```
 
----
+_This will clone DevDash into `/default/` directory and run `_install.sh` script._
+
+##### Scripts Done! Now What?
 
 After running the install script and `vagrant up` you should be able browse to [vvv.dev](http://vvv.dev) and start using DevDash.
 
 ---
-_**NOTE:** This Dashboard project has no affiliation with Varying Vagrant Vagrants or any other components listed here._
 
----
+
+## Features
+
+#### Dynamic Machine Display
+
+Thanks to the hard work from @TopDown DevDash features a dynamically generated list of the _active machines_ running on your current VVV setup.  
+
+These machines and a fuzzy search can be found on the homepage for DevDash.
+
+
+#### VVV Site Wizard
+
+A wonderful command line tool maintained by @bradp that assists in the creation of new Vagrants _(i.e. Wordpress Setups)_.
+
+**Note:** Multiple parts of this dashboard assume you are familiar with the [VVV Site Wizard](https://github.com/aliso/vvv-site-wizard) and already have it installed. 
+
+_If you currenty do not have VVV Site Wizard installed, you can install it [here](https://github.com/bradp/vv#installation)._
+
+
+
+
 
 ### Change Log
 
+
 ---
-10/27/2015
+10/28/2015
+
+ * New Install Script! `_install.sh` now handles copying & updating various npm packages.
+ * Updates Readme with new install instructions using `_install.sh`
+
+
+
+
+---
+10/26/2015
 
 **Forked TopDown VVV Dashboard**
 
