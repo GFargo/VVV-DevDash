@@ -32,7 +32,7 @@ After the install script has completed you can fire up vagrant via `vagrant up` 
 ---
 
 
-## Features
+## DevDash Features
 
 #### Dynamic Machine Display
 
