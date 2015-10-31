@@ -27,7 +27,7 @@ _This will clone DevDash into `/default/` directory and run `_install.sh` script
 
 ##### All Done! Now What?
 
-After running the install script and `vagrant up` you should be able browse to [vvv.dev](http://vvv.dev) and begin using DevDash.
+After the install script has completed you can fire up vagrant via `vagrant up` you should be able browse to [vvv.dev](http://vvv.dev) and begin using DevDash.
 
 ---
 
