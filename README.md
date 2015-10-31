@@ -60,6 +60,7 @@ _If you currenty do not have VVV Site Wizard installed, you can install it [here
 
  * WIP: Create Vagrant shell executer bash script `_vagrant.sh`
  * Create new hook to run after `git checkout` and `git clone` that runs `_install.sh` script.
+ * Updates Readme
 
 
 ---
