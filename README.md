@@ -25,7 +25,7 @@ $ git clone https://github.com/gfargo/VVV-DevDash.git dashboard ; build/sh/_inst
 
 _This will clone DevDash into `/default/` directory and run `_install.sh` script._
 
-##### Scripts Done! Now What?
+##### All Done! Now What?
 
 After running the install script and `vagrant up` you should be able browse to [vvv.dev](http://vvv.dev) and begin using DevDash.
 
