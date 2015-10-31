@@ -13,7 +13,10 @@ The purpose of DevDash is to alleviate the pain points of using VVV when develop
 ---
 _**Note:** DevDash has no affiliation with Varying Vagrant Vagrants or any other components listed here._
 
+
+
 # Installation
+
 First step is to clone DevDash into your local VVV installation.  Navigate to `/path/to/vvv/www/default` directory and run the following command in terminal.
 
 ```
@@ -24,7 +27,7 @@ _This will clone DevDash into `/default/` directory and run `_install.sh` script
 
 ##### Scripts Done! Now What?
 
-After running the install script and `vagrant up` you should be able browse to [vvv.dev](http://vvv.dev) and start using DevDash.
+After running the install script and `vagrant up` you should be able browse to [vvv.dev](http://vvv.dev) and begin using DevDash.
 
 ---
 
