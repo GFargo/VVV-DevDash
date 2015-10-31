@@ -8,7 +8,7 @@ This is a Varying Vagrant Vagrants Dashboard for the most excellent [Varying Vag
 
 Its purpose is to dynamically load host links to all sites created in the VVV www path.
 
-The purpose of DevDash is to alleviate all the pain points of using VVV when developing wordpress themes and plugins.  It helps with the heavy lifting of creating new hosts, dynmically displaying current hosts, and providing links to the wonderful tools provided by VVV.
+The purpose of DevDash is to alleviate the pain points of using VVV when developing wordpress themes and plugins.  It helps with the heavy lifting of creating new hosts, dynmically displaying current hosts, and providing links to the wonderful tools provided by VVV.
 
 ---
 _**Note:** DevDash has no affiliation with Varying Vagrant Vagrants or any other components listed here._
