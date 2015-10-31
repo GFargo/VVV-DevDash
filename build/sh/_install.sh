@@ -21,13 +21,9 @@ function npm_package_is_installed {
   echo "$return_"
 }
 
-
-
 echo '----------------------------------------'
 echo 'Installing DevDash'
 echo '----------------------------------------'
-
-echo $ROOT
 
 echo '----------------------------------------'
 echo 'Installing Grunt'
