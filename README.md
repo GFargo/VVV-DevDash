@@ -14,9 +14,7 @@ The purpose of DevDash is to alleviate the pain points of using VVV when develop
 _**Note:** DevDash has no affiliation with Varying Vagrant Vagrants or any other components listed here._
 
 # Installation
-Clone this repo to your VVV/www/default/ directory
-
-Navigate to `/path/to/vvv/www/default` directory and run the following command in terminal.
+First step is to clone DevDash into your local VVV installation.  Navigate to `/path/to/vvv/www/default` directory and run the following command in terminal.
 
 ```
 $ git clone https://github.com/gfargo/VVV-DevDash.git dashboard ; build/sh/_install.sh
