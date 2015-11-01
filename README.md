@@ -20,7 +20,7 @@ _**Note:** DevDash has no affiliation with Varying Vagrant Vagrants or any other
 First step is to clone DevDash into your local VVV installation.  Navigate to `/path/to/vvv/www/default` directory and run the following command in terminal.
 
 ```
-$ git clone https://github.com/gfargo/VVV-DevDash.git dashboard ; build/sh/_install.sh
+$ git clone https://github.com/gfargo/VVV-DevDash.git dashboard ; cd dashboard ; build/sh/_install.sh
 ```
 
 _This will clone DevDash into `/default/` directory and run `_install.sh` script to move the required files into their appropriate locations._
