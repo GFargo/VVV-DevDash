@@ -1,4 +1,4 @@
 #!/bin/bash
 # Handler for Vagrant Commands Triggered from Dashboard
 
-ROOT=$(pwd)
+echo    "variable 1:" $1

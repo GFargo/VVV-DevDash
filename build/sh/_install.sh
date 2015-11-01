@@ -21,22 +21,31 @@ function npm_package_is_installed {
   echo "$return_"
 }
 
-echo '----------------------------------------'
-echo 'Installing DevDash'
-echo '----------------------------------------'
+clear #clean window
 
-echo '----------------------------------------'
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+
+cat build/sh/banner.txt
+
+echo 'Installing DevDash into' $ROOT '... '
+
+echo
+echo '----'
 echo 'Installing Grunt'
-echo '----------------------------------------'
+echo '----'
 
 if [[ $(npm_package_is_installed grunt l) != 1 ]]; then
     echo "...grunt not found on system... installing grunt..."
     npm install -g grunt
+else
+    echo "...grunt already installed... skipping installation..."
 fi
 
-echo '----------------------------------------'
+echo
+echo '----'
 echo 'Bower Intall & Update'
-echo '----------------------------------------'
+echo '----'
 
 if [[ $(npm_package_is_installed bower g) ]]; then
     echo "...bower already installed... skipping installation..."
@@ -49,13 +58,13 @@ else
     bower update
 fi
 
-
-echo '----------------------------------------'
+echo
+echo '----'
 echo 'Installing Files'
-echo '----------------------------------------'
+echo '----'
 
 echo "...running npm install..."
 npm install
 
 echo "...copying dashboard into default root..."
-cp [-v] dashboard-custom.php ../dashboard-custom.php
+cp -v ./dashboard-custom.php ../dashboard-custom.php

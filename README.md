@@ -23,7 +23,7 @@ First step is to clone DevDash into your local VVV installation.  Navigate to `/
 $ git clone https://github.com/gfargo/VVV-DevDash.git dashboard ; build/sh/_install.sh
 ```
 
-_This will clone DevDash into `/default/` directory and run `_install.sh` script._
+_This will clone DevDash into `/default/` directory and run `_install.sh` script to move the required files into their appropriate locations._
 
 ##### All Done! Now What?
 

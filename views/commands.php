@@ -3,6 +3,13 @@
     <small>Automate Site Creation <a href="https://github.com/bradp/vv" target="_blank"><i class="fa fa-github"></i></a></small>
 </h2>
 
+<!--
+<h4>Site Creation GUI</h4>
+<div class="well">
+    Buttons go here
+</div>
+ -->
+
 <h4>Useful Variable VVV Commands</h4>
 
 <table class="table table-responsive table-bordered table-striped">
