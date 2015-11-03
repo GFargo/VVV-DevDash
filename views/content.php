@@ -80,7 +80,7 @@ if (isset($_POST['module']) && ($_POST['module'] != 'phpMyAdmin' && $_POST['modu
                             <a class="btn btn-warning btn-xs" href="http://<?php echo $array['host']; ?>/wp-admin" target="_blank"><i class="fa fa-wordpress"></i> Admin</a>
 
                             <?php if ( !in_array($key, $default_hosts) ) { ?>
-                                <span class="btn btn-default btn-xs tip remove-host" data-toggle="tooltip" title="Can be removed via command line. $ vv remove <?php echo $array['host']; ?>" data-placement="top"><i class="fa fa-unlock"></i></a>
+                                <span class="btn btn-default btn-xs tip remove-host" data-toggle="tooltip" title="Can be removed via command line via $ vv remove <?php echo $array['host']; ?>" data-placement="top"><i class="fa fa-unlock"></i></a>
                             <?php } else { ?>
                                 <span class="btn btn-default btn-xs tip" data-toggle="tooltip" title="Cannot be removed, part of VVV core installation" data-placement="top"><i class="fa fa-lock"></i></a>
                             <?php }

@@ -4672,6 +4672,11 @@ a:visited, a:focus, a:hover {
   background-position: top right;
   background-repeat: no-repeat;
   padding: 20px;
+  -webkit-transition: all 0.35s cubic-bezier(0.9, -0.21, 0.12, 1.2);
+  -moz-transition: all 0.35s cubic-bezier(0.9, -0.21, 0.12, 1.2);
+  -ms-transition: all 0.35s cubic-bezier(0.9, -0.21, 0.12, 1.2);
+  -o-transition: all 0.35s cubic-bezier(0.9, -0.21, 0.12, 1.2);
+  transition: all 0.35s cubic-bezier(0.9, -0.21, 0.12, 1.2);
 }
 .main.full {
   width: 100% !important;
@@ -4722,6 +4727,11 @@ a:visited, a:focus, a:hover {
  */
 .sidebar {
   position: relative;
+  -webkit-transition: all 0.25s cubic-bezier(0.9, -0.2, 0.12, 1.25);
+  -moz-transition: all 0.25s cubic-bezier(0.9, -0.2, 0.12, 1.25);
+  -ms-transition: all 0.25s cubic-bezier(0.9, -0.2, 0.12, 1.25);
+  -o-transition: all 0.25s cubic-bezier(0.9, -0.2, 0.12, 1.25);
+  transition: all 0.25s cubic-bezier(0.9, -0.2, 0.12, 1.25);
 }
 .sidebar.open .open {
   display: none;
