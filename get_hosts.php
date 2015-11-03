@@ -1,6 +1,11 @@
 <?php
 
 $path = '../../';
+$default_hosts = array( 'wordpress-develop/build',
+                        'wordpress-develop/src',
+                        'wordpress-trunk',
+                        'wordpress-default'
+                    );
 
 /**
  * Create an array of the hosts from all of the VVV host files

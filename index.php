@@ -27,8 +27,8 @@
 	<!-- main content -->
 	<div class="col-sm-8 col-sm-offset-4 col-md-9 col-md-offset-3 main">
 		<h1 class="page-header">
-		<i class="fa fa-terminal"></i>
-		DevDash
+			<i class="fa fa-terminal"></i>
+			DevDash
 		</h1>
 
 		<div class="row">

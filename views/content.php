@@ -71,13 +71,20 @@ if (isset($_POST['module']) && ($_POST['module'] != 'phpMyAdmin' && $_POST['modu
                     <td>
                         <a class="btn btn-primary btn-xs" href="http://<?php echo $array['host']; ?>/" target="_blank">Visit Site <i class="fa fa-external-link"></i></a>
 
-                        <?php if ( 'true' == $array['is_wp'] ) { ?>
-                            <a class="btn btn-warning btn-xs" href="http://<?php echo $array['host']; ?>/wp-admin" target="_blank"><i class="fa fa-wordpress"></i> Admin</a>
-                        <?php } ?>
                         <a class="btn btn-success btn-xs tip" href="http://<?php echo $array['host']; ?>/?XDEBUG_PROFILE" target="_blank"
-                            data-toggle="tooltip" title="`xdebug_on` must be turned on" data-placement="top">
+                            data-toggle="tooltip" title="`xdebug_on` must be turned on in VM" data-placement="top">
                             Profiler <i class="fa fa-search-plus"></i>
                         </a>
+
+                        <?php if ( 'true' == $array['is_wp'] ) { ?>
+                            <a class="btn btn-warning btn-xs" href="http://<?php echo $array['host']; ?>/wp-admin" target="_blank"><i class="fa fa-wordpress"></i> Admin</a>
+
+                            <?php if ( !in_array($key, $default_hosts) ) { ?>
+                                <span class="btn btn-default btn-xs tip remove-host" data-toggle="tooltip" title="Can be removed via command line. $ vv remove <?php echo $array['host']; ?>" data-placement="top"><i class="fa fa-unlock"></i></a>
+                            <?php } else { ?>
+                                <span class="btn btn-default btn-xs tip" data-toggle="tooltip" title="Cannot be removed, part of VVV core installation" data-placement="top"><i class="fa fa-lock"></i></a>
+                            <?php }
+                        } ?>
                     </td>
                 </tr>
                 <?php
