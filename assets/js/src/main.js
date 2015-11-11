@@ -222,9 +222,11 @@
         $('.tip.tool').tooltip();
         // Activate PopOvers
         $('.tip.pop').popover();
-        $('.tip.pop').on('click', function (e) {
-            $('.tip.pop').not(this).popover('hide');
-        });
+
+        // Causes bug in code where have to click on button twice
+        // $('.tip.pop').on('click', function (e) {
+        //     $('.tip.pop').not(this).popover('hide');
+        // });
 
 
       },

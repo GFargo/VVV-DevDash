@@ -1,18 +1,21 @@
 # VVV DevDash
 ######Custom Dashboard for Varying Vagrants Vagrant - Forked from [@TopDown](https://github.com/topdown/VVV-Dashboard)######
----
-
 
 
 This is a Varying Vagrant Vagrants Dashboard for the most excellent [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV).
 
-Its purpose is to dynamically load host links to all sites created in the VVV www path.
+The purpose of DevDash is to offer a collection of tools that assit in the learning curve and alleviate many of the pain points when using VVV for development.  DevDash does the heavy lifting.
 
-The purpose of DevDash is to alleviate the pain points of using VVV when developing wordpress themes and plugins.  It helps with the heavy lifting of creating new hosts, dynmically displaying current hosts, and providing links to the wonderful tools provided by VVV.
+#### Goals:
+
+ - [ ] Creating new Hosts using VV Site Wizard (#13)
+ - [ ] Dynamically display current hosts.
+   - [ ] Refactor current code in `content.php` to be in class (#21)
+   - [x] Add support for multiple domains (#16)
+ - [x] Seemless experience to the system tools provided by VVV. _note: two pages restrict iframe privelages, currently in the process of finding a workaround (#23)_
 
 ---
 _**Note:** DevDash has no affiliation with Varying Vagrant Vagrants or any other components listed here._
-
 
 
 # Installation
@@ -29,7 +32,9 @@ _This will clone DevDash into `/default/` directory and run `_install.sh` script
 
 After the install script has completed you can fire up vagrant via `vagrant up` you should be able browse to [vvv.dev](http://vvv.dev) and begin using DevDash.
 
-![image](https://raw.githubusercontent.com/topdown/VVV-Dashboard/master/live-search.gif)
+![image](https://raw.githubusercontent.com/gfargo/VVV-DevDash/master/screenshot.png)
+
+![image](https://raw.githubusercontent.com/gfargo/VVV-DevDash/master/live-search.gif)
 
 ---
 
