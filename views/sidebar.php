@@ -9,6 +9,7 @@
     <div class="panel-heading" role="tab" id="headingOne">
       <h3 class="panel-title sidebar-title">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <i class="fa fa-terminal"></i>
           Vagrant Commands
         </a>
       </h3>
@@ -63,7 +64,8 @@
     <div class="panel-heading" role="tab" id="headingTwo">
       <h3 class="panel-title sidebar-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          References &amp; Extras
+          <i class="fa fa-life-ring"></i>
+          References
         </a>
       </h3>
     </div>

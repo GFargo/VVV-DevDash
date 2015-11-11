@@ -44,9 +44,8 @@ function get_hosts( $path ) {
 
             // read through the lines in our host files
             foreach ( $lines as $num => $line ) {
-
-                // skip comment lines
-                if ( ! strstr( $line, '#' ) && 'vvv.dev' != trim( $line ) ) {
+                // skip both comment lines and empty lines
+                if ( ! strstr( $line, '#' ) && 'vvv.dev' != trim( $line ) && strlen($line) > 1 ) {
                     if ( 'vvv-hosts' == $name ) {
                         switch ( trim( $line ) ) {
                             case 'local.wordpress.dev' :
@@ -63,8 +62,13 @@ function get_hosts( $path ) {
                                 break;
                         }
                     }
-                    if ( 'vvv-hosts' != $name ) {
-                        $hosts[ $name ] = array( 'host' => trim( $line ) );
+                    if ( 'vvv-hosts' != $name && !empty($name)) {
+                        if (empty($hosts[ $name ])) {
+                            // array_push($hosts[ $name ], array( 'subdomain' => trim( $line )));
+                            $hosts[ $name ]['host'] =  trim( $line );
+                        } else {
+                            $hosts[ $name ]['subdomain'.$num] = trim( $line );
+                        }
                     }
                 }
             }

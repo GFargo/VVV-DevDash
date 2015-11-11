@@ -1,10 +1,11 @@
 <?php
 
+
 $html = '<div class="vvv-module">';
 
+// Very Crude Content Router ;p
 if (isset($_POST['module']) && ($_POST['module'] != 'phpMyAdmin' && $_POST['module'] != 'Dashboard')) {
     $path = $_POST['module'];
-
     switch ($path) {
         // case 'phpMyAdmin':
         //     $path = '/database-admin/';
@@ -18,6 +19,9 @@ if (isset($_POST['module']) && ($_POST['module'] != 'phpMyAdmin' && $_POST['modu
         case 'Webgrind':
             $path = '/webgrind/';
             break;
+        // case 'Mailcatcher':
+        //     $path = 'http://vvv.dev:1080/';
+        //     break;
         case 'PHP Info':
         default:
             $path = '/phpinfo/';
@@ -35,6 +39,7 @@ if (isset($_POST['module']) && ($_POST['module'] != 'phpMyAdmin' && $_POST['modu
     require('get_hosts.php');
 
     $hosts = get_hosts( '../../' );
+
 ?>
 
 
@@ -59,30 +64,59 @@ if (isset($_POST['module']) && ($_POST['module'] != 'phpMyAdmin' && $_POST['modu
         <?php
 
         foreach ( $hosts as $key => $array ) {
+            // List of Subdomains
+            $subdomains = '';
             if ( 'site_count' != $key ) { ?>
+
                 <tr>
                     <?php if ( 'true' == $array['debug'] ) { ?>
                         <td><span class="label label-primary">Debug <i class="fa fa-check-circle-o"></i></span></td>
                     <?php } else { ?>
                         <td><span class="label label-danger">Debug <i class="fa fa-times-circle-o"></i></span></td>
                     <?php } ?>
-                    <td><?php echo $array['host']; ?></td>
+                    <td class="domains">
+                        <?php
+                        // Echo Main Domain
+                        echo $array['host'];
+
+                        // Collect Subdomains
+                        for ($count=0; $count < sizeof($array); $count++) {
+                            if (!empty($array['subdomain'.$count])) {
+                                $subdomains .= '<li><i class=\'fa fa-globe\'></i> ' . $array['subdomain'.$count] . '</li>';
+                            }
+                        }
+
+                        if (!empty($subdomains)) {
+                            $subdomains = "<ul class='list-unstyled'>".$subdomains."</ul>";
+                        ?>
+                            <button type="button" class="btn btn-inline btn-xs tip pop" data-container="body" data-toggle="popover" data-html="true" data-placement="top"
+                                    title="Subdomains for <?= $array['host']; ?>" data-content="<?= $subdomains ?>">
+                                <i class="fa fa-sticky-note"></i>
+                            </button>
+                        <?php } ?>
+                    </td>
 
                     <td>
                         <a class="btn btn-primary btn-xs" href="http://<?php echo $array['host']; ?>/" target="_blank">Visit Site <i class="fa fa-external-link"></i></a>
 
-                        <a class="btn btn-success btn-xs tip" href="http://<?php echo $array['host']; ?>/?XDEBUG_PROFILE" target="_blank"
+                        <a class="btn btn-success btn-xs tip tool" href="http://<?php echo $array['host']; ?>/?XDEBUG_PROFILE" target="_blank"
                             data-toggle="tooltip" title="`xdebug_on` must be turned on in VM" data-placement="top">
                             Profiler <i class="fa fa-search-plus"></i>
                         </a>
 
                         <?php if ( 'true' == $array['is_wp'] ) { ?>
-                            <a class="btn btn-warning btn-xs" href="http://<?php echo $array['host']; ?>/wp-admin" target="_blank"><i class="fa fa-wordpress"></i> Admin</a>
+                            <a class="btn btn-danger btn-xs" href="http://<?php echo $array['host']; ?>/wp-admin" target="_blank"><i class="fa fa-wordpress"></i> Admin</a>
 
                             <?php if ( !in_array($key, $default_hosts) ) { ?>
-                                <span class="btn btn-default btn-xs tip remove-host" data-toggle="tooltip" title="Can be removed via command line via $ vv remove <?php echo $array['host']; ?>" data-placement="top"><i class="fa fa-unlock"></i></a>
+                                <button class="btn btn-warning btn-xs tip pop remove-host" data-container="body" data-toggle="popover" data-html="true" data-placement="top"
+                                        title="Personal Install" data-content="Removed via command line via:</br> <code>$ vv remove <?php echo $array['host']; ?> </code>">
+                                    <i class="fa fa-unlock"></i>
+                                </button>
                             <?php } else { ?>
-                                <span class="btn btn-default btn-xs tip" data-toggle="tooltip" title="Cannot be removed, part of VVV core installation" data-placement="top"><i class="fa fa-lock"></i></a>
+                                <button class="btn btn-warning btn-xs tip pop" data-container="body" data-toggle="popover" data-html="true" data-placement="top"
+                                        title="Core Install" data-content="Part of VVV core installation, these sites cannot be removed or deleted.">
+                                    <i class="fa fa-lock"></i>
+                                </button>
                             <?php }
                         } ?>
                     </td>

@@ -36,6 +36,24 @@ a {
     }
 }
 
+
+.btn {
+    -webkit-transition: all .2s ease-in;
+       -moz-transition: all .2s ease-in;
+        -ms-transition: all .2s ease-in;
+         -o-transition: all .2s ease-in;
+            transition: all .2s ease-in;
+}
+.btn.btn-inline {
+    background-color: transparent;
+    border-color: transparent;
+    color: darken($color-dgray, 10%);
+    &:hover {
+        // background-color: $brand-primary;
+        border-color: darken($color-dgray, 2%);
+        color: darken($color-dgray, 45%);
+    }
+}
 /*
  * Main content
  */
@@ -67,15 +85,17 @@ a {
         margin-top: 0;
     }
 }
-
 .list-unstyled li {
     padding:               7px 0;
     border-radius:         5px;
     -moz-border-radius:    5px;
     -webkit-border-radius: 5px;
     &:hover {
-        background: #ded;
+        // background: #ded;
     }
+}
+.popover-content .list-unstyled {
+    margin-bottom: 0;
 }
 
 .sites {

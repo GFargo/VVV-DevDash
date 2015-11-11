@@ -30,6 +30,11 @@
                 PHP <i class="fa fa-info-circle"></i>
                 </a>
             </li>
+            <li>
+                <a class="nav-link" name="Mailcatcher" href="http://vvv.dev:1080/">
+                Mailcatcher <i class="fa fa-external-link-square"></i>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

@@ -70,7 +70,7 @@
       init: function() {
         $('.header-nav').find('.nav-link').on('click', function(event) {
           // Iframe is restricted on phpMyAdmin
-          if (event.target.name !== 'phpMyAdmin') {
+          if (event.target.name !== 'phpMyAdmin' || event.target.name !== 'Mailcatcher' ) {
             event.preventDefault();
             if (!$('.main').hasClass('full')) {
               $('.sidebar-control.close' ,'.sidebar-controls').click();
@@ -225,7 +225,14 @@
 
         });
 
-        $('.tip').tooltip();
+        // Activate Tooltips
+        $('.tip.tool').tooltip();
+        // Activate PopOvers
+        $('.tip.pop').popover();
+        $('.tip.pop').on('click', function (e) {
+            $('.tip.pop').not(this).popover('hide');
+        });
+
 
       },
       finalize: function() {
