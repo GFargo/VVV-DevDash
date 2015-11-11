@@ -36,8 +36,6 @@ After the install script has completed you can fire up vagrant via `vagrant up` 
 
 ![image](https://raw.githubusercontent.com/gfargo/VVV-DevDash/master/screenshot.png)
 
-![image](https://raw.githubusercontent.com/gfargo/VVV-DevDash/master/live-search.gif)
-
 ---
 
 
