@@ -62,7 +62,8 @@
         $('.header-nav').find('.nav-link').on('click', function(event) {
           // Iframe is restricted on phpMyAdmin
           console.log('name:', event.target.name);
-          if (event.target.name !== 'phpMyAdmin'  && event.target.name !== 'Mailcatcher' && event.target.name !== 'Help' ) {
+          if (!$.inArray(event.target.name, ['phpMyAdmin','Mailcatcher','Help' ])) {
+          // if (event.target.name !== 'phpMyAdmin' && event.target.name !==  && event.target.name !== ) {
             event.preventDefault();
             if (!$('.main').hasClass('full')) {
               $('.sidebar-control.close' ,'.sidebar-controls').click();

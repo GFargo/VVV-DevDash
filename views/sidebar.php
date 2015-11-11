@@ -1,5 +1,5 @@
 
-<div class="sidebar-controls" data-step="2" data-html="true" data-intro="The sidebar is now <b>collapsable!</b>.">
+<div class="sidebar-controls" data-step="2" data-html="true" data-intro="The sidebar is now <b>collapsable</b> so you can focus on whats important. </br><i>The sidebar also will automatically close when viewing a service page in header</i>.">
   <a href="#" alt="open sidebar" class="sidebar-control open">
     <i class="fa fa-caret-square-o-right"></i>
   </a>
