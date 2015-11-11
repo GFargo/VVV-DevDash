@@ -4821,6 +4821,9 @@ a:visited, a:focus, a:hover {
   position: relative;
   z-index: 50;
 }
+.content_container.introjs-fixParent {
+  position: relative !important;
+}
 
 .main {
   background-image: url(../img/vagrant-and-wordpress.png);
@@ -4936,6 +4939,13 @@ a:visited, a:focus, a:hover {
 }
 
 /*
+ * IntroJs Overrides
+ */
+.introjs-helperNumberLayer {
+  line-height: 12px;
+}
+
+/*
  * Footer
  */
 .footer {
@@ -4966,8 +4976,8 @@ a:visited, a:focus, a:hover {
 }
 @media (min-width: 768px) {
   .sidebar {
-    position: fixed;
-    top: 51px;
+    position: absolute !important;
+    top: 0;
     bottom: 0;
     left: 0;
     z-index: 1000;

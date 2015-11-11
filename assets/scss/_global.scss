@@ -54,6 +54,8 @@ a {
         color: darken($color-dgray, 45%);
     }
 }
+
+
 /*
  * Main content
  */
@@ -61,6 +63,9 @@ a {
 .content_container {
     position: relative;
     z-index: $zindex-content-container;
+    &.introjs-fixParent{
+        position: relative!important;
+    }
 }
 
 .main {
@@ -195,6 +200,16 @@ a {
 
 
 
+/*
+ * IntroJs Overrides
+ */
+.introjs-helperNumberLayer {
+    line-height: 12px;
+}
+
+// .sidebar.introjs-fixParent {
+//     top: 0;
+// }
 
 
 /*

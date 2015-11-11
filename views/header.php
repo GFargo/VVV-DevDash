@@ -35,6 +35,11 @@
                 Mailcatcher <i class="fa fa-external-link-square"></i>
                 </a>
             </li>
+            <li>
+                <a class="nav-link" name="Help" href="javascript:void(0);" onclick="javascript:introJs().start();">
+                Help <i class="fa fa-question-circle"></i>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

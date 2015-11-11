@@ -1,11 +1,15 @@
 
-<div class="sidebar-controls">
-  <a href="#" alt="open sidebar" class="sidebar-control open"><i class="fa fa-caret-square-o-right"></i></a>
-  <a href="#" alt="close sidebar" class="sidebar-control close"><i class="fa fa-caret-square-o-left"></i></a>
+<div class="sidebar-controls" data-step="2" data-html="true" data-intro="The sidebar is now <b>collapsable!</b>.">
+  <a href="#" alt="open sidebar" class="sidebar-control open">
+    <i class="fa fa-caret-square-o-right"></i>
+  </a>
+  <a href="#" alt="close sidebar" class="sidebar-control close">
+    <i class="fa fa-caret-square-o-left"></i>
+  </a>
 </div>
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
+  <div class="panel panel-default" data-step="3" data-html="true" data-intro="Docs and references are now contained within an <b>accordion</b>.  This allows the different sections to grow <i>while reducing the amount of scrolling</i>">
     <div class="panel-heading" role="tab" id="headingOne">
       <h3 class="panel-title sidebar-title">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">

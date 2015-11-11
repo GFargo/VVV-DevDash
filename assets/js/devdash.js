@@ -70,7 +70,8 @@
       init: function() {
         $('.header-nav').find('.nav-link').on('click', function(event) {
           // Iframe is restricted on phpMyAdmin
-          if (event.target.name !== 'phpMyAdmin' || event.target.name !== 'Mailcatcher' ) {
+          console.log('name:', event.target.name);
+          if (event.target.name !== 'phpMyAdmin'  && event.target.name !== 'Mailcatcher' && event.target.name !== 'Help' ) {
             event.preventDefault();
             if (!$('.main').hasClass('full')) {
               $('.sidebar-control.close' ,'.sidebar-controls').click();
