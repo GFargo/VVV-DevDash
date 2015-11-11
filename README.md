@@ -63,6 +63,19 @@ _If you currenty do not have VVV Site Wizard installed, you can install it [here
 
 
 ---
+11/11/2015
+
+ * Adds screenshot of dashboard showing the subdomains available under `testmu.dev`.
+ * Adds Mailcatcher to navigation [#20](https://github.com/GFargo/VVV-DevDash/issues/20)
+ * Adds elastic animation when collapsing sidebar
+ * Refactors hosts display code to elimate any empty lines and display any subdomains within a popover next to the main domain.
+ * Using the git hook `git checkout` worked to install the script however hooks do not automatically install when checking out the repo - so one has to go back in and 'recheckout' the master branch.  Seemed like using hooks would overcomplicate the process so instead I updated the install command to include a command to fire the `_install.sh` shell script.
+ * Updates Readme with new images & goals section.
+ * _Update: Put the vagrant shell execution scripts on hold after hitting wall with delays involved with calling vagrant commands.  Will investigate further asap._
+
+
+
+---
 10/31/2015
 
  * WIP: Create Vagrant shell executer bash script `_vagrant.sh`
