@@ -82,7 +82,7 @@ if (isset($_POST['module']) && ($_POST['module'] != 'phpMyAdmin' && $_POST['modu
                         // Collect Subdomains
                         for ($count=0; $count < sizeof($array); $count++) {
                             if (!empty($array['subdomain'.$count])) {
-                                $subdomains .= '<li><i class=\'fa fa-globe\'></i> ' . $array['subdomain'.$count] . '</li>';
+                                $subdomains .= '<li><a href=\'http://'. $array['subdomain'.$count] .'\' target=\'_blank\'> <i class=\'fa fa-globe\'></i> ' . $array['subdomain'.$count] . '</a></li>';
                             }
                         }
 
