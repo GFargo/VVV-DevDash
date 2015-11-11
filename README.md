@@ -29,6 +29,8 @@ _This will clone DevDash into `/default/` directory and run `_install.sh` script
 
 After the install script has completed you can fire up vagrant via `vagrant up` you should be able browse to [vvv.dev](http://vvv.dev) and begin using DevDash.
 
+![image](https://raw.githubusercontent.com/topdown/VVV-Dashboard/master/live-search.gif)
+
 ---
 
 
