@@ -99,13 +99,13 @@ if (isset($_POST['module']) && ($_POST['module'] != 'phpMyAdmin' && $_POST['modu
                     <td>
                         <a class="btn btn-primary btn-xs" href="http://<?php echo $array['host']; ?>/" target="_blank">Visit Site <i class="fa fa-external-link"></i></a>
 
-                        <a class="btn btn-success btn-xs tip tool" href="http://<?php echo $array['host']; ?>/?XDEBUG_PROFILE" target="_blank"
+                        <a class="btn btn-danger btn-xs tip tool" href="http://<?php echo $array['host']; ?>/?XDEBUG_PROFILE" target="_blank"
                             data-toggle="tooltip" title="`xdebug_on` must be turned on in VM" data-placement="top">
                             Profiler <i class="fa fa-search-plus"></i>
                         </a>
 
                         <?php if ( 'true' == $array['is_wp'] ) { ?>
-                            <a class="btn btn-danger btn-xs" href="http://<?php echo $array['host']; ?>/wp-admin" target="_blank"><i class="fa fa-wordpress"></i> Admin</a>
+                            <a class="btn btn-success btn-xs" href="http://<?php echo $array['host']; ?>/wp-admin" target="_blank"><i class="fa fa-wordpress"></i> Admin</a>
 
                             <?php if ( !in_array($key, $default_hosts) ) { ?>
                                 <button class="btn btn-warning btn-xs tip pop remove-host" data-container="body" data-toggle="popover" data-html="true" data-placement="top"
