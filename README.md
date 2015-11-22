@@ -1,5 +1,5 @@
 # VVV DevDash
-######Custom Dashboard for Varying Vagrants Vagrant - Forked from [@TopDown](https://github.com/topdown/VVV-Dashboard)######
+######Custom Dashboard for Varying Vagrants Vagrant - Originally Forked from [@TopDown](https://github.com/topdown/VVV-Dashboard)######
 
 
 This is a Varying Vagrant Vagrants Dashboard for the most excellent [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV).
@@ -17,7 +17,7 @@ The purpose of DevDash is to offer a collection of tools that assit in the learn
 
 
 ---
-_**Note:** DevDash has no affiliation with Varying Vagrant Vagrants or any other components listed here._
+_**Note:** DevDash has no affiliation with Varying Vagrant Vagrants or any other VVV-Dashboards._
 
 
 # Installation
@@ -25,7 +25,7 @@ _**Note:** DevDash has no affiliation with Varying Vagrant Vagrants or any other
 First step is to clone DevDash into your local VVV installation.  Navigate to `/path/to/vvv/www/default` directory and run the following command in terminal.
 
 ```
-$ git clone https://github.com/gfargo/VVV-DevDash.git dashboard ; cd dashboard ; build/sh/_install.sh
+$ git clone https://github.com/gfargo/VVV-DevDash.git dashboard ; dashboard/build/sh/_install.sh
 ```
 
 _This will clone DevDash into `/default/` directory and run `_install.sh` script to move the required files into their appropriate locations._
@@ -61,6 +61,11 @@ _If you currenty do not have VVV Site Wizard installed, you can install it [here
 
 ### Change Log
 
+---
+11/21/2015
+
+ * Officially moved away from 'Fork' status.
+
 
 ---
 11/11/2015
@@ -72,7 +77,6 @@ _If you currenty do not have VVV Site Wizard installed, you can install it [here
  * Using the git hook `git checkout` worked to install the script however hooks do not automatically install when checking out the repo - so one has to go back in and 'recheckout' the master branch.  Seemed like using hooks would overcomplicate the process so instead I updated the install command to include a command to fire the `_install.sh` shell script.
  * Updates Readme with new images & goals section.
  * _Update: Put the vagrant shell execution scripts on hold after hitting wall with delays involved with calling vagrant commands.  Will investigate further asap._
-
 
 
 ---
