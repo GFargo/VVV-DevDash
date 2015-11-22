@@ -1,6 +1,4 @@
 # VVV DevDash
-######Custom Dashboard for Varying Vagrants Vagrant - Originally Forked from [@TopDown](https://github.com/topdown/VVV-Dashboard)######
-
 
 This is a Varying Vagrant Vagrants Dashboard for the most excellent [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV).
 
@@ -17,7 +15,8 @@ The purpose of DevDash is to offer a collection of tools that assit in the learn
 
 
 ---
-_**Note:** DevDash has no affiliation with Varying Vagrant Vagrants or any other VVV-Dashboards._
+_**Note:** DevDash has no affiliation with Varying Vagrant Vagrants and was originally a fork from [@TopDown](https://github.com/topdown/VVV-Dashboard)._
+
 
 
 # Installation
