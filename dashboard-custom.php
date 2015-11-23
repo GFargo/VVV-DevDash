@@ -1,9 +1,17 @@
 <?php
+/**
+ * DevDash - Custom Dashboard for VVV
+ *
+ * @author Griffen Fargo <ghfargo@gmail.com>
+ *
+ * @param {string}  $url
+ * @param {int}     $status_code
+ */
 
 
-function redirect_to_vvv_dash( $url, $status_code = 301 ) {
-	header( 'Location: ' . $url, true, $status_code );
+function DevDash_DashboardRedirect( $url, $status_code) {
+	header('Location: ' . $url, true, (isset($status_code) ? $status_code : '301'));
 	die();
 }
 
-redirect_to_vvv_dash( '/dashboard/index.php', 302 );
+DevDash_DashboardRedirect( '/dashboard/index.php', 302 );

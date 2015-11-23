@@ -26,7 +26,7 @@ clear #clean window
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 
-cat build/sh/banner.txt
+cat config/banner.txt
 
 echo 'Installing DevDash into' $ROOT '... '
 

@@ -1,11 +1,161 @@
 <?php
+/**
+ * Server class created to assist with interacting with the VVV Installation
+ *
+ * @author      GFargo <https://github.com/GFargo/>
+ *
+ */
+
+
 
 $path = '../../';
-$default_hosts = array( 'wordpress-develop/build',
-                        'wordpress-develop/src',
-                        'wordpress-trunk',
-                        'wordpress-default'
-                    );
+
+
+/**
+* Server Utilities
+*/
+class Server
+{
+
+    public $hosts = array();
+
+    public $sites = array();
+
+    public $search_config = array();
+
+    public $site_count;
+
+    public $working_directory;
+
+    private $default_hosts;
+
+    public $_COOKIE;
+
+
+    function __construct()
+    {
+        // Search Config Setup
+        $this->search_config = array(
+            // 'scan_depth' => (DEVDASH_SCAN_DEPTH ? DEVDASH_SCAN_DEPTH : '2'),
+            'scan_depth' => '2',
+            'blacklist' => array(),
+            'whitelist' => array( 'vvv-hosts', 'wp-config.php'),
+        );
+
+        // Setup Default Hosts
+        $this->default_hosts = array(
+            'wordpress-develop/build',
+            'wordpress-develop/src',
+            'wordpress-trunk',
+            'wordpress-default'
+        );
+
+        $this->getEnvironment();
+    }
+
+    //
+    public function getEnvironment ()
+    {
+        $this->parseFiles( $this->scanFiles() );
+    }
+
+    private function parseHosts ($hosts)
+    {
+
+    }
+
+    private function parseWpConfig ($config)
+    {
+
+    }
+
+
+    public function scanFiles ( $path = '../../' )
+    {
+        $files = new RecursiveIteratorIterator( new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS) );
+        if (!is_object($files)) {
+            return null;
+        }
+        // max depth for the recursive iterator through child directories
+        $files->setMaxDepth($this->search_config['scan_depth']);
+
+        return $files;
+    }
+
+    public function parseFiles ( RecursiveIteratorIterator $files, $config = null )
+    {
+        if (!isset($files)) {
+            return;
+        }
+
+        $config = (isset($config) ? $config : $this->search_config);
+
+        // Parse files returned from scanFiles()
+        foreach ( $files as $file_path => $file ) {
+            // Check if file is in search config whitelist
+            if ( $this->checkSearchResult($file) ) {
+                $lines = file( $file_path ); // Create array from each line of the file
+                $file_path  = str_replace( array( '../../', '/vvv-hosts' ), array(), $file_path );
+
+                // // {SplFileInfo} $file
+                // echo "<hr>";
+                echo "<h4>File: " . $file->getFileName() . "</h4>";
+                // var_dump($lines);
+                if (true) {
+                    # code...
+                }
+            }
+        }
+
+    }
+
+    private function checkSearchResult ( $file, $config = null )
+    {
+        $config = (isset($config) ? $config : $this->search_config);
+        $passCheck = false;
+        // Ignore Directories
+        if ($file->isDir()) {
+            return $passCheck;
+        }
+        // Check Blacklist
+        if (isset($config['blacklist'])) {
+            foreach ($config['blacklist'] as $key => $blacklist_entry) {
+                if(strstr($file->getFileName(), $blacklist_entry)) {
+                    $passCheck = false;
+                }
+            }
+        }
+        // Check Whitelist
+        if (isset($config['whitelist'])) {
+            foreach ($config['whitelist'] as $key => $whitelist_entry) {
+                if(strstr($file->getFileName(), $whitelist_entry)) {
+                    $passCheck = true;
+                    return $passCheck;
+                } else {
+                    $passCheck = false;
+                }
+            }
+        }
+        return $passCheck;
+    }
+
+    public function getSiteCount ()
+    {
+
+    }
+
+    public function setHosts  ()
+    {
+
+    }
+
+    public function getHosts ()
+    {
+
+    }
+
+}
+
 
 /**
  * Create an array of the hosts from all of the VVV host files
@@ -28,19 +178,28 @@ function get_hosts( $path ) {
     $depth = 2;
     $site  = new RecursiveDirectoryIterator( $path, RecursiveDirectoryIterator::SKIP_DOTS );
     $files = new RecursiveIteratorIterator( $site );
+
+
     if ( ! is_object( $files ) ) {
         return null;
     }
+
 
     $files->setMaxDepth( $depth );
 
     // Loop through the file list and find what we want
     foreach ( $files as $name => $object ) {
 
-        if ( strstr( $name, 'vvv-hosts' ) && ! is_dir( 'vvv-hosts' ) ) {
 
-            $lines = file( $name );
+        if ( strstr( $name, 'vvv-hosts' ) && ! is_dir( 'vvv-hosts' ) ) {
+            echo "<hr><h4>File:</h4>";
+            var_dump($object);
+
+            $lines = file( $name ); // Extra lines from file
+            echo "<h5>Name:</h5>";
+            var_dump($name);
             $name  = str_replace( array( '../../', '/vvv-hosts' ), array(), $name );
+
 
             // read through the lines in our host files
             foreach ( $lines as $num => $line ) {
@@ -120,5 +279,6 @@ function get_hosts( $path ) {
 
     return $array;
 }
+
 
 ?>

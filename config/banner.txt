@@ -45,7 +45,6 @@
 
           Thanks you for choosing to use DevDash!
           Github: https://github.com/GFargo/VVV-DevDash
-          Forked: https://github.com/topdown/VVV-Dashboard
 
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
