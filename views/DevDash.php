@@ -17,8 +17,8 @@ class DevDash
 
     function __construct($config)
     {
-        // Var Dump Variables
-        var_dump($config);
+
+        // var_dump($config);
 
         // Setup the Controller
         $this->controller = new DashboardController($config['routes']);

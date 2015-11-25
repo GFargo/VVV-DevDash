@@ -8,6 +8,8 @@
 
 
 
+require 'models/Site.php';
+
 $path = '../../';
 
 
@@ -16,6 +18,7 @@ $path = '../../';
 */
 class Server
 {
+    public $sites_path = '../../';
 
     public $hosts = array();
 
@@ -44,10 +47,11 @@ class Server
 
         // Setup Default Hosts
         $this->default_hosts = array(
-            'wordpress-develop/build',
-            'wordpress-develop/src',
-            'wordpress-trunk',
-            'wordpress-default'
+            'dashboard'                 => 'vvv.dev',
+            'wordpress-develop/build'   => 'build.wordpress-develop.dev',
+            'wordpress-develop/src'     => 'src.wordpress-develop.dev',
+            'wordpress-trunk'           => 'local.wordpress-trunk.dev',
+            'wordpress-default'         => 'local.wordpress.dev'
         );
 
         $this->getEnvironment();
@@ -56,17 +60,182 @@ class Server
     //
     public function getEnvironment ()
     {
+
         $this->parseFiles( $this->scanFiles() );
+
+
+        echo "<h3>this->sites</h3>";
+        var_dump($this->sites);
+
+        echo "<h3>this->hosts</h3>";
+        var_dump($this->hosts);
+
+
+
+        // Store Site Count
+        $this->site_count = count( $this->sites );
+        echo "<h3>Count: $this->site_count</h3>";
     }
 
-    private function parseHosts ($hosts)
+    private function parseHost ($host)
     {
+        $lines = file( $host->getPathname() ); // Create array from each line of the file
+        $file_path  = str_replace( array( '../../', '/vvv-hosts' ), array(), $host->getPathname() );
 
+        $foundHosts = 0;
+        // read through the lines in our host files
+        foreach ( $lines as $num => $line ) {
+
+            // skip both comment lines and empty lines
+            if ( !strstr( $line, '#' ) && strlen($line) > 1 ) {
+                // Sk
+                if ( 'vvv.dev' != trim( $line )) {
+                    // echo "<h1>VVV.DEV FOUND</h1>";
+                }
+
+                //
+                //
+                // ToDo: Design Flaw - Assumes Host is first entry found in file
+                //
+                //
+
+                if (isset($this->sites[$file_path])) {
+                    if ($foundHosts < 1) {
+                        $this->sites[$file_path]->host = trim( $line );
+                    } else {
+                        $this->sites[$file_path]->subdomains[$foundHosts-1] = trim( $line );
+                    }
+                } elseif( in_array(trim( $line ), $this->default_hosts)) {
+                    echo "WE GOT A DEFAULT: $file_path <br>";
+                    echo "$num \ $line <br>";
+                } else {
+                    echo "WTF IS THIS: $file_path <br>";
+                    echo "$num \ $line <br>";
+                }
+
+                ++$foundHosts;
+            }
+        }
     }
 
     private function parseWpConfig ($config)
     {
+        $config_lines = file( $config->getPathname() );
+        $name         = str_replace( array( '../../', '/wp-config.php', '/htdocs' ), array(), $config->getPathname() );
 
+        // Passing only the name will create new site class if it doesn't already exist
+        $site = $this->siteHandler($name);
+
+        // WP Config Checks
+        // Regex generated with http://txt2re.com/
+        /////////////////////
+        $lineRegexFilters = array(
+            'wp_define_value_string' => '.*?(?:[a-z][a-z]+).*?(?:[a-z][a-z]+).*?(?:[a-z][a-z]+).*?((?:[a-z][a-z]+))',
+            'wp_define_value_var'    => '.*?(?:[a-z][a-z0-9_]*).*?(?:[a-z][a-z0-9_]*).*?((?:[a-z][a-z0-9_]*))',
+            'table_prefix_value'    => '.*?(?:[a-z][a-z0-9_]*).*?((?:[a-z][a-z0-9_]*))',
+        );
+
+        // Set Hosts on Default Sites √
+        if (isset($this->sites[$name]) && isset($this->default_hosts[$name])) {
+            $this->sites[$name]->host = $this->default_hosts[$name];
+        }
+
+        // Set path √
+        $this->sites[$name]->path = $config->getPathname();
+
+        // Set Git √
+        $this->sites[$name]->git = $this->checkWpContentGit($this->sites_path, $name);
+
+        // read through the lines in our host files
+        foreach ( $config_lines as $num => $line ) {
+
+            // Skip blank lines and comments
+            if ( ! strstr( $line, '#' ) && strlen($line) > 1 ) {
+
+                // Environment Check √
+                if ( strstr( $line, "\"WP_ENV\"" ) || strstr( $line, "'WP_ENV'" ) || strstr( $line, "\"WP_ENVIRONMENT\"" ) || strstr( $line, "'WP_ENVIRONMENT'" )  ) {
+                    if ($c = preg_match_all ("/".$lineRegexFilters['wp_define_value_string']."/is", $line, $environmnt_matches)) {
+                        $this->sites[$name]->environment = $environmnt_matches[1][0];
+                    }
+                }
+
+                // Database Check
+                //// Database Name √
+                if ( strstr( $line, "DB_NAME" ) ) {
+                    if ($c = preg_match_all ("/".$lineRegexFilters['wp_define_value_string']."/is", $line, $matches)) {
+                        $this->sites[$name]->db['name'] = $matches[1][0];
+                    }
+                }
+                //// Database Host √
+                if ( strstr( $line, "DB_HOST" ) ) {
+                    if ($c = preg_match_all ("/".$lineRegexFilters['wp_define_value_string']."/is", $line, $matches)) {
+                        $this->sites[$name]->db['host'] = $matches[1][0];
+                    }
+                }
+                //// Database Table Prefix √
+                if ( strstr( $line, "table_prefix" ) ) {
+                    if ($c = preg_match_all ("/".$lineRegexFilters['table_prefix_value']."/is", $line, $matches)) {
+                        $this->sites[$name]->db['table_prefix'] = $matches[1][0];
+                    }
+                }
+                //// Database User √
+                if ( strstr( $line, "DB_USER" ) ) {
+                    if ($c = preg_match_all ("/".$lineRegexFilters['wp_define_value_string']."/is", $line, $matches)) {
+                        $this->sites[$name]->db['user'] = $matches[1][0];
+                    }
+                }
+                //// Database Password √
+                if ( strstr( $line, "DB_PASSWORD" ) ) {
+                    if ($c = preg_match_all ("/".$lineRegexFilters['wp_define_value_string']."/is", $line, $matches)) {
+                        $this->sites[$name]->db['password'] = $matches[1][0];
+                    }
+                }
+                //// Database Charset √
+                if ( strstr( $line, "DB_CHARSET" ) ) {
+                    if ($c = preg_match_all ("/".$lineRegexFilters['wp_define_value_string']."/is", $line, $matches)) {
+                        $this->sites[$name]->db['charset'] = $matches[1][0];
+                    }
+                }
+
+                // Wordpress Installation Type
+                //// Check Multisite √
+                if (strstr($line, "\"MULTISITE\"") || strstr($line, "'MULTISITE'")) {
+                    $this->sites[$name]->installation['multi'] = true;
+                }
+                //// Check Subdomain Install √
+                if (strstr($line, "\"SUBDOMAIN_INSTALL\"") || strstr($line, "'SUBDOMAIN_INSTALL'")) {
+                   if (stristr( $line, "true" )) {
+                       $this->sites[$name]->installation['subdomain'] = true;
+                   }
+                }
+
+                // WPDebug Check √
+                if ( strstr( $line, "\"WP_DEBUG\"" ) || strstr( $line, "'WP_DEBUG'" )  ) {
+                    if (stristr( $line, "true" )) {
+                        $this->sites[$name]->debug = true;
+                    } elseif (stristr( $line, "false" )) {
+                        $this->sites[$name]->debug = false;
+                    } else {
+                        $this->sites[$name]->debug = "invalid";
+                    }
+                }
+            }
+        }
+    }
+
+    // Create and handle Site()'s
+    public function siteHandler ($name)
+    {
+        if (!isset($this->sites[$name])) {
+            $newSite = new Site($name); // Create new site
+            $this->sites[$name] = $newSite; // Store new site
+            return $this->sites[$name]; // Return newly created site
+        } else {
+            // Site already exists
+            return $this->sites[$name];
+
+
+        }
     }
 
 
@@ -82,27 +251,36 @@ class Server
         return $files;
     }
 
+    public function checkWpContentGit ( $path = '../../', $key )
+    {
+        if (isset($path) && isset($key)) {
+            $git_wp_content = $path . $key . '/htdocs/wp-content/.git';
+            if (file_exists($git_wp_content)) {
+                return true;
+            }
+            return false;
+        }
+    }
+
     public function parseFiles ( RecursiveIteratorIterator $files, $config = null )
     {
         if (!isset($files)) {
             return;
         }
-
         $config = (isset($config) ? $config : $this->search_config);
-
         // Parse files returned from scanFiles()
         foreach ( $files as $file_path => $file ) {
             // Check if file is in search config whitelist
             if ( $this->checkSearchResult($file) ) {
-                $lines = file( $file_path ); // Create array from each line of the file
-                $file_path  = str_replace( array( '../../', '/vvv-hosts' ), array(), $file_path );
 
-                // // {SplFileInfo} $file
-                // echo "<hr>";
-                echo "<h4>File: " . $file->getFileName() . "</h4>";
-                // var_dump($lines);
-                if (true) {
-                    # code...
+                // {SplFileInfo} $file
+                echo "<h4>File Name: " . $file->getFileName() . "</h4>";
+                echo "<h5>Path: " . $file->getPathname() . "</h5>";
+
+                if ( $file->getFileName() == 'vvv-hosts' ) {
+                    $this->parseHost($file);
+                } elseif ( $file->getFileName() == 'wp-config.php' ) {
+                    $this->parseWpConfig($file);
                 }
             }
         }
@@ -235,26 +413,7 @@ function get_hosts( $path ) {
 
         if ( strstr( $name, 'wp-config.php' ) ) {
 
-            $config_lines = file( $name );
-            $name         = str_replace( array( '../../', '/wp-config.php', '/htdocs' ), array(), $name );
 
-            // read through the lines in our host files
-            foreach ( $config_lines as $num => $line ) {
-
-                // skip comment lines
-                if ( strstr( $line, "define('WP_DEBUG', true);" )
-                     || strstr( $line, 'define("WP_DEBUG", true);' )
-                     || strstr( $line, 'define( "WP_DEBUG", true );' )
-                     || strstr( $line, "define( 'WP_DEBUG', true );" )
-                ) {
-                    $debug[ $name ] = array(
-                        'path'  => $name,
-                        'debug' => 'true',
-                    );
-                }
-            }
-
-            $wp[ $name ] = 'true';
         }
     }
 
