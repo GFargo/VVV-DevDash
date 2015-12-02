@@ -54,16 +54,16 @@ class SiteManager extends DashboardView
 
         $ul = new html('ul', array( 'class' => 'list-inline' ));
 
-        $debugButton = new html('li', array( 'text' => $this->labelDebug($site) ));
-        $XdebugButton = new html('li', array( 'text' => $this->btnXDebug($site) ));
+        $debugButton = new html('li', array( 'text' => $this->btnDebug($site) ));
         $wpAdminButton = new html('li', array( 'text' => $this->btnWordpressAdmin($site) ));
         $siteButton = new html('li', array( 'text' =>  $this->btnSite($site) ));
+        $gitButton = ($this->btnGit($site) ? new html('li', array( 'text' => $this->btnGit($site) )) : '');
         $subdomainsButton = ($this->btnSubdomains($site) ? new html('li', array( 'text' => $this->btnSubdomains($site) )) : '');
 
         $ul->append($debugButton)
-            ->append($XdebugButton)
             ->append($subdomainsButton)
             ->append($wpAdminButton)
+            ->append($gitButton)
             ->append($siteButton);
 
         $innerContainer->append($lock)
@@ -106,52 +106,131 @@ class SiteManager extends DashboardView
 
     }
 
+    private function btnGit ($site)
+    {
+        $gitButton = '';
+        // var_dump($site);
+        if ($site->git) {
+            $text = '<i class="fa fa-git-square"></i>';
+            $title = 'Git Controlled WP_Content';
+
+            $gitContentContainer = new html('div', array(
+                'class' => '',
+            ));
+
+
+            $repo = Git::open('../../'.$site->name.'/htdocs/wp-content');  // -or- Git::create('/path/to/repo')
+
+            // $status = $repo->status();
+            print_r($repo->list_branches(true));
+            // $repo->add('.');
+            // $repo->commit('Some commit message');
+            // $repo->push('origin', 'master');
+
+            $gitContentContainer->append();
+
+            $gitButton = new html('a', array(
+                'class'             => 'btn-card tip pop',
+                'data-container'    => 'body',
+                'data-toggle'       => 'popover',
+                'data-html'         => 'true',
+                'data-placement'    => 'top',
+                'href'              => '#',
+                'title'             => htmlentities($title),
+                'data-content'      => htmlentities($gitContentContainer),
+                'text'              => $text
+            ));
+
+        }
+        return $gitButton;
+    }
+
     private function getHost ($site)
     {
         return $site->host;
     }
 
-    private function labelDebug ($site)
-    {
-        $label = '';
-        if ( 'true' == $site->debug ) {
-            $label .= '<span class="label-card">Debug <i class="fa fa-check-circle-o"></i></span>';
-        } else {
-            $label .= '<span class="label-card">Debug <i class="fa fa-times-circle-o"></i></span>';
-        }
-        return $label;
-    }
-
     private function btnDebug ($site)
     {
 
+        if ( 'true' == $site->debug ) {
+            $title = '<i class="fa fa-check-circle-o"></i> WP_DEBUG Enabled';
+            $text = '<i class="fa fa-check-circle-o"></i> Debug';
+        } else {
+            $title = '<i class="fa fa-times-circle-o"></i> WP_DEBUG Disabled';
+            $text = '<i class="fa fa-times-circle-o"></i> Debug';
+        }
 
+        $debugContentContainer = new html('div', array(
+            'class' => '',
+        ));
+
+        $debugContentContainer->append($this->btnXDebug($site));
+
+        $debugButton = new html('a', array(
+            'class'             => 'btn-card tip pop',
+            'data-container'    => 'body',
+            'data-toggle'       => 'popover',
+            'data-html'         => 'true',
+            'data-placement'    => 'top',
+            'href'              => '#',
+            'title'             => htmlentities($title),
+            'data-content'      => htmlentities($debugContentContainer),
+            'text'              => $text
+        ));
+
+        return $debugButton;
+    }
+
+    private function btnXDebug ($site)
+    {
+        $xDebugBtn = new html('a', array(
+            'class' => 'btn-card tip tool',
+            'href' => 'http://' . $site->host . '/?XDEBUG_PROFILE',
+            'target' => '_blank',
+            'data-placement' => 'top',
+            'data-toggle' => 'tooltip',
+            'title' => '`xdebug_on` must be turned on in VM',
+            'text' => 'Profiler <i class="fa fa-search-plus"></i>',
+        ));
+
+        return $xDebugBtn;
     }
 
 
     private function btnSubdomains ($site)
     {
         // Collect Subdomains
-        $subdomains = '';
+        $subdomainContentContainer = new html('ul', array( 'class' => 'list-unstyled' ));
+        $subdomainsExist = false;
+        $subdomainsButton = '';
         for ($count=0; $count < sizeof($site->subdomains); $count++) {
             if (!empty($site->subdomains[$count])) {
-                $subdomains .= '<li><a href=\'http://'. $site->subdomains[$count] .'\' target=\'_blank\'> <i class=\'fa fa-globe\'></i> ' . $site->subdomains[$count] . '</a></li>';
+                $subdomain = new html('li');
+                $link = new html ('a', array(
+                    'href'      => 'http://'. $site->subdomains[$count],
+                    'target'    => '_blank',
+                    'text'      => '<i class=\'fa fa-globe\'></i> ' . $site->subdomains[$count],
+                ));
+                $subdomain->append($link);
+                $subdomainContentContainer->append($subdomain);
+                $subdomainsExist = true;
             }
         }
-        $btnHtml  = '';
-        if (!empty($subdomains)) {
-            $subdomains = "<ul class='list-unstyled'>" . $subdomains . "</ul>";
-            $btnHtml .= '<a href="#" class="btn-card tip pop"';
-            $btnHtml .=         'data-container="body"';
-            $btnHtml .=         'data-toggle="popover"';
-            $btnHtml .=         'data-html="true"';
-            $btnHtml .=         'data-placement="top"';
-            $btnHtml .=         'title="Subdomains for' . $site->host  . '"';
-            $btnHtml .=         'data-content="' . $subdomains. '">';
-            $btnHtml .=     '<i class="fa fa-sticky-note"></i>';
-            $btnHtml .= '</a>';
+
+        if ($subdomainsExist) {
+            $subdomainsButton = new html('a', array(
+                'class'             => 'btn-card tip pop',
+                'data-container'    => 'body',
+                'data-toggle'       => 'popover',
+                'data-html'         => 'true',
+                'data-placement'    => 'top',
+                'title'             => 'Subdomains for ' . $site->host  . '"',
+                'data-content'      => htmlentities($subdomainContentContainer),
+                'text'              => '<i class="fa fa-sticky-note"></i>',
+            ));
         }
-        return $btnHtml;
+        return $subdomainsButton;
     }
 
     private function btnSite ($site)
@@ -176,22 +255,6 @@ class SiteManager extends DashboardView
 
         return $wordpressAdminBtn;
     }
-
-    private function btnXDebug ($site)
-    {
-        $xDebugBtn = new html('a', array(
-            'class' => 'btn-card tip tool',
-            'href' => 'http://' . $site->host . '/?XDEBUG_PROFILE',
-            'target' => '_blank',
-            'data-placement' => 'top',
-            'data-toggle' => 'tooltip',
-            'title' => '`xdebug_on` must be turned on in VM',
-            'text' => 'Profiler <i class="fa fa-search-plus"></i>',
-        ));
-
-        return $xDebugBtn;
-    }
-
 
     private function btnSiteLock ($site)
     {

@@ -340,20 +340,6 @@ class Server
         return $passCheck;
     }
 
-    public function getSiteCount ()
-    {
-
-    }
-
-    public function setHosts  ()
-    {
-
-    }
-
-    public function getHosts ()
-    {
-
-    }
 
 }
 
