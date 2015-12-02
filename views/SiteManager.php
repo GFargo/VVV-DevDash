@@ -111,7 +111,7 @@ class SiteManager extends DashboardView
         $gitButton = '';
         // var_dump($site);
         if ($site->git) {
-            $text = '<i class="fa fa-git-square"></i>';
+            $text = '<i class="fa fa-git"></i>';
             $title = 'Git Controlled WP_Content';
 
             $gitContentContainer = new html('div', array(
@@ -155,10 +155,10 @@ class SiteManager extends DashboardView
 
         if ( 'true' == $site->debug ) {
             $title = '<i class="fa fa-check-circle-o"></i> WP_DEBUG Enabled';
-            $text = '<i class="fa fa-check-circle-o"></i> Debug';
+            $text = '<i class="fa fa-check-circle-o"></i>';
         } else {
             $title = '<i class="fa fa-times-circle-o"></i> WP_DEBUG Disabled';
-            $text = '<i class="fa fa-times-circle-o"></i> Debug';
+            $text = '<i class="fa fa-times-circle-o"></i>';
         }
 
         $debugContentContainer = new html('div', array(
@@ -191,7 +191,7 @@ class SiteManager extends DashboardView
             'data-placement' => 'top',
             'data-toggle' => 'tooltip',
             'title' => '`xdebug_on` must be turned on in VM',
-            'text' => 'Profiler <i class="fa fa-search-plus"></i>',
+            'text' => 'Site Profiler <i class="fa fa-search-plus"></i>',
         ));
 
         return $xDebugBtn;
@@ -250,7 +250,7 @@ class SiteManager extends DashboardView
             'class' => 'btn-card',
             'href'  => 'http://' . $site->host . '/wp-admin',
             'target' => '_blank',
-            'text'  =>  '<i class="fa fa-wordpress"></i> Admin'
+            'text'  =>  '<i class="fa fa-wordpress"></i>'
         ));
 
         return $wordpressAdminBtn;

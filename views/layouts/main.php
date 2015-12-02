@@ -37,7 +37,8 @@
         <div class="hosts">
             <div id="main_content" class="main_content">
                 <div class="vvv-module">
-                    <?php require 'views/partials/content.php'; ?>
+                    <?php //require 'views/partials/content.php'; ?>
+                    <?= $content ?>
                 </div>
             </div>
         </div>
