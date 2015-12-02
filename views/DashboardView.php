@@ -1,6 +1,7 @@
 <?php
-class DashboardView {
-    protected $template_dir = 'templates/';
+class DashboardView
+{
+    protected $template_dir = 'views/';
     protected $vars = array();
     public function __construct($template_dir = null) {
         if ($template_dir !== null) {

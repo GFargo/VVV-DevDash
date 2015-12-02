@@ -50,6 +50,9 @@ class Server
         );
 
         $this->getEnvironment();
+
+        // Store Site Count
+        $this->site_count = sizeof( json_decode(json_encode( $this->sites ), true) );
     }
 
     //
@@ -59,8 +62,6 @@ class Server
         if (!file_exists($this->cache_path) || !isset($_COOKIE['DevDash_Update'])) {
             $this->parseFiles( $this->scanFiles() );
 
-            // Store Site Count
-            $this->site_count = count( $this->sites );
             // Save Site Cache
             $this->saveCache('DevDash_Update', $this->sites, false);
         } else {

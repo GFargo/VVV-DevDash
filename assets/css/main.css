@@ -4791,12 +4791,18 @@ a:visited, a:focus, a:hover {
 }
 
 .page-header {
+  margin: 30px 0 20px;
+  text-align: center;
   color: #4E5C99;
 }
 
 .navbar-inverse {
-  background: #2c3355;
+  background-color: #2c3355;
   border-color: #282f4f;
+  background-image: url(../img/vagrant-and-wordpress.png);
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: 160px;
 }
 .navbar-inverse .navbar-brand {
   color: #3e640e;
@@ -4835,9 +4841,6 @@ a:visited, a:focus, a:hover {
 }
 
 .main {
-  background-image: url(../img/vagrant-and-wordpress.png);
-  background-position: top right;
-  background-repeat: no-repeat;
   padding: 20px;
   -webkit-transition: all 0.35s cubic-bezier(0.9, -0.21, 0.12, 1.2);
   -moz-transition: all 0.35s cubic-bezier(0.9, -0.21, 0.12, 1.2);

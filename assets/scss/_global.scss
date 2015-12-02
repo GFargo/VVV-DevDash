@@ -20,13 +20,20 @@ a {
 }
 
 .page-header {
+    margin: 30px 0 20px;
+    text-align: center;
     color: $brand-primary;
 }
 
 
 .navbar-inverse {
-    background: darken($brand-primary, 20%);
+    background-color: darken($brand-primary, 20%);
     border-color: darken($brand-primary, 22%);
+
+    background-image: url(../img/vagrant-and-wordpress.png);
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: 160px;
 
     .navbar-brand {
         color: darken($brand-success, 30%);
@@ -69,9 +76,6 @@ a {
 }
 
 .main {
-    background-image: url(../img/vagrant-and-wordpress.png);
-    background-position: top right;
-    background-repeat: no-repeat;
 
     padding: 20px;
 

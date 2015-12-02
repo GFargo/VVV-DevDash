@@ -8,6 +8,11 @@
   </a>
 </div>
 
+<h2 class="page-header" data-step="1" data-html="true" data-intro="<?= $this->tutorial[0]['content']; ?>">
+    DevDash
+</h2>
+
+
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default" data-step="3" data-html="true" data-intro="Docs and references are now contained within an <b>accordion</b>.  This allows the different sections to grow <i>while reducing the amount of scrolling</i>">
     <div class="panel-heading" role="tab" id="headingOne">

@@ -21,21 +21,69 @@
 (function($) {
 
   var DevDashUtilities = {
+
+    // // Fuzzy Search Functionality
+    // 'search': {
+    //   init: function() {
+    //     $('#search_container').on('keyup change', '.search-input', function(){
+    //       // pull in the new value
+    //       console.log('this selector:', $(this).selector.selector);
+    //       console.log('event:', event);
+
+    //       var searchTerm = $('.search-input').val(),
+    //           site_list = $('.sites');
+
+
+    //       console.log('searchTerm:', searchTerm);
+    //       console.log('site_list:', site_list);
+
+    //       // remove any old highlighted terms
+    //       $(site_list).removeHighlight();
+
+    //       $('tr').removeClass('highlight');
+
+    //       // disable highlighting if empty
+    //       if (searchTerm) {
+    //         // highlight the new term
+    //         $(site_list).highlight(searchTerm);
+    //       }
+
+    //       // Highlight the table row
+    //       if ($('.sites td span.highlight').length) {
+
+    //         $('.sites td span.highlight').closest('tr').addClass('highlight');
+    //       }
+
+    //       if ($('.sites table tr').not('.highlight')) {
+    //         $('.sites tr').addClass('hide');
+    //       }
+
+    //       $('.sites tr.highlight').removeClass('hide');
+
+    //       if($('#text-search').val() === '') {
+    //         $('.sites tr').removeClass('hide');
+    //       }
+    //     });
+    //   },
+    // },
+
+
     // Header Nav - Pulling in other services on the server via Ajax & Iframe
     'header': {
       init: function() {
         $('.header-nav').find('.nav-link').on('click', function(event) {
           // Iframe is restricted on phpMyAdmin
-          console.log('name:', event.target.name);
-          if (!$.inArray(event.target.name, ['phpMyAdmin','Mailcatcher','Help' ])) {
-          // if (event.target.name !== 'phpMyAdmin' && event.target.name !==  && event.target.name !== ) {
+          // console.log('name:', event.target.name);
+
+          if (! _.contains(['phpMyAdmin','Mailcatcher','Help' ], event.target.name) ) {
             event.preventDefault();
             if (!$('.main').hasClass('full')) {
               $('.sidebar-control.close' ,'.sidebar-controls').click();
             }
 
-            var content = 'http://vvv.dev/dashboard/views/content.php',
+            var content = 'http://vvv.dev/dashboard/views/partials/iframe.php',
                 moduleName = event.target.name;
+
             $.ajax({
               url: content,
               type: 'POST',
@@ -54,6 +102,8 @@
             .always(function() {
               console.log("complete");
             });
+          } else {
+            console.log('else derp');
           }
         });
       },
@@ -196,6 +246,7 @@
 
       },
       finalize: function() {
+        // Create listener for search fiel
 
         DevDashUtilities.header.init();
 
