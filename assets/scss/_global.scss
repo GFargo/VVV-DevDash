@@ -110,6 +110,9 @@ a {
 }
 
 
+
+
+
 /*
  * Search
  */
@@ -139,6 +142,79 @@ a {
     }
 }
 
+
+
+
+
+
+
+.site-card {
+    padding: 8px;
+    background: #fcfcfc;
+    border: 1px solid #cce;
+    margin-bottom: 12px;
+    height: 80px;
+
+    .lock {
+        float: left;
+        line-height: 55px;
+        margin: 0 12px 0 6px;
+    }
+
+    .btn-lock {
+        border: 1px solid #ececec;
+        background: transparent;
+        border-radius: 50%;
+        font-size: 23px;
+        line-height: 28px;
+        height: 35px;
+        width: 35px;
+        text-align: center;
+        color: #cce;
+
+        &:hover {
+            color: lighten($brand-primary, 15%);
+        }
+        &:focus,
+        &:active {
+            outline: none;
+        }
+        &:active {
+            color: $brand-primary;
+        }
+    }
+
+    .title {
+        text-align: left;
+        font-weight: 300;
+        display: inline-block;
+        border-bottom: 1px dotted #eee;
+        padding-bottom: 2px;
+        margin: 6px auto 9px;
+    }
+
+
+    .list-inline {
+        font-size: .9em;
+        .fa {
+            font-size: 1.3em;
+            top: 2px;
+            position: relative;
+        }
+        li {
+            padding-left: 8px;
+            padding-right: 8px;
+            border-right: 1px solid #f0f0f0;
+
+            &:first-child {
+                padding-left: 0;
+            }
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+}
 
 
 

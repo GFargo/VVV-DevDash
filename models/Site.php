@@ -21,6 +21,7 @@ class Site
     public $environment;
 
     public $installation = array(
+            'wordpress'     => true,
             'multi'         => false,
             'subdomain'     => false,
         );

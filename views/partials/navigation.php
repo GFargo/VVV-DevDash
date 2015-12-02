@@ -1,5 +1,4 @@
 <div class="header-nav navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="./"><i class="fa fa-home"></i></a>
         </div>
@@ -41,5 +40,5 @@
                 </a>
             </li>
         </ul>
-    </div>
+
 </div>

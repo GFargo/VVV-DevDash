@@ -4,7 +4,7 @@
 */
 
 require 'models/Server.php';
-require 'controllers/DevDashController.php';
+require 'controllers/DashboardController.php';
 
 class DevDash
 {
@@ -14,31 +14,39 @@ class DevDash
 
     public $server;
 
+    public $tutorial;
 
-    function __construct($config)
+    private $layout = 'views/layouts/main.php';
+
+
+    public function __construct($config)
     {
-
-        // var_dump($config);
 
         // Setup the Controller
         $this->controller = new DashboardController($config['routes']);
 
+        // Setup the Server
         $this->server = new Server();
 
+        $this->tutorial = $config['tutorial_steps'];
 
-        echo "Route: ";
-        var_dump($this->controller->getRoute());
+
+        // echo "Route: ";
+        // var_dump($this->controller->getRoute());
 
     }
 
-    function run ()
+    public function run ()
     {
-        echo "Pie: " . DEVDASH_XDEBUG . " --- " . DEVDASH_SCAN_DEPTH;
+
+        /// Determine Route Information
+
+        // Load Data and pass into Main
+
+        require $this->layout;
+
+
     }
-
-
-
-
 
 }
 

@@ -1,5 +1,5 @@
 
-<div class="sidebar-controls" data-step="2" data-html="true" data-intro="The sidebar is now <b>collapsable</b> so you can focus on whats important. </br><i>The sidebar also will automatically close when viewing a service page in header</i>.">
+<div class="sidebar-controls" data-step="2" data-html="true" data-intro="<?= $this->tutorial[1]['content']; ?>">
   <a href="#" alt="open sidebar" class="sidebar-control open">
     <i class="fa fa-caret-square-o-right"></i>
   </a>
@@ -97,8 +97,12 @@
             <li>
               <a href="https://github.com/bradp/vv" target="_blank"><i class="fa fa-github"></i> Variable VVV</a>
             </li>
+        </ul>
+
+        <ul class="nav">
+            <h5 class="category-header">DevDash</h5>
             <li>
-              <a href="https://github.com/gfargo/VVV-DevDash" target="_blank"><i class="fa fa-github"></i> DevDash</a>
+              <a href="https://github.com/gfargo/VVV-DevDash" target="_blank"><i class="fa fa-github"></i> Github</a>
             </li>
             <li>
               <a href="https://github.com/gfargo/VVV-DevDash/issues" target="_blank"><i class="fa fa-info-circle"></i> Issues</a>

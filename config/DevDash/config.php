@@ -5,11 +5,8 @@
 */
 
 // XDebug Boolean
-define('DEVDASH_XDEBUG', false);
-// Cache Settings
-define('DEVDASH_THEMES_TTL', 86400);
-define('DEVDASH_PLUGINS_TTL', 86400);
-define('DEVDASH_HOSTS_TTL', 86400);
+define('DEVDASH_XDEBUG', "false");
+
 // Server Settings
 define('DEVDASH_SCAN_DEPTH', 2);
 
@@ -49,6 +46,10 @@ $config = array(
     ),
     'packages' => array(
 
+    ),
+    'tutorial_steps' => array(
+        ['content' => "Welcome to DevDash a thoughtfully crafted VVV Dashboard.  <b>DevDash</b> strives to offer a comprehensive collection of tools to help with <i>the management of</i> <b>VVV</b>, <b>VV Site Wizard</b>, and wp_content folders managed by <b>git</b>."],
+        ['content' => "The sidebar is now <b>collapsible</b> allowing you to focus on whats important. </br><i>The sidebar also will automatically close when viewing a service page in header</i>."],
     ),
 );
 

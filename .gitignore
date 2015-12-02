@@ -1,3 +1,7 @@
+.devdash-cache/
+
+
+
 ###SASS###
 
 *.sass-cache*

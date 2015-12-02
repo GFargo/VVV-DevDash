@@ -20,34 +20,35 @@
 </head>
 <body>
 
-<?php require_once 'views/navigation.php'; ?>
+<?php require_once 'views/partials/navigation.php'; ?>
 
 <div class="content_container container-fluid">
 
     <!-- sidebar -->
     <div class="col-sm-4 col-md-3 sidebar open">
         <div>
-            <?php require_once 'views/sidebar.php'; ?>
+            <?php require_once 'views/partials/sidebar.php'; ?>
         </div>
     </div>
 
     <!-- main content -->
     <div class="col-sm-8 col-sm-offset-4 col-md-9 col-md-offset-3 main">
-        <h1 class="page-header" data-step="1" data-html="true" data-intro="Welcome to the new and improved VVV Dashboard originally forked from <a href='https://github.com/topdown/VVV-Dashboard' target='_blank'>@topdown</a>.  <b>DevDash</b> strives to offer a comprehensive collection of tools to help with <i>the management of</i> <b>VVV</b> and <b>VV Site Wizard</b>.">
-            VVV DevDash
+        <h1 class="page-header" data-step="1" data-html="true" data-intro="<?= $this->tutorial[0]['content']; ?>">
+            DevDash
+            <small><b>V</b>arying <b>V</b>agrant <b>V</b>agrants Dashboard</small>
         </h1>
 
 
-        <div class="row">
-            <div class="col-sm-12 hosts">
-                <div id="main_content" class="main_content">
-                    <?php require 'views/content.php'; ?>
+        <div class="hosts">
+            <div id="main_content" class="main_content">
+                <div class="vvv-module">
+                    <?php require 'views/partials/content.php'; ?>
                 </div>
             </div>
-        </div> <!-- /.row -->
+        </div>
     </div> <!-- /.col-sm-8 -->
 </div> <!-- /.content_container -->
 
-<?php require 'views/footer.php'; ?>
+<?php require 'views/partials/footer.php'; ?>
 </body>
 </html>

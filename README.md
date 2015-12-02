@@ -5,11 +5,11 @@ This is a Varying Vagrant Vagrants Dashboard for the most excellent [Varying Vag
 The purpose of DevDash is to offer a collection of tools that assit in the learning curve and alleviate many of the pain points when using VVV for development.  DevDash does the heavy lifting.
 
 ### Goals:
-
+ - [ ] Rewrite entire dashboard to follow MVC ideology
  - [ ] Creating new Hosts using VV Site Wizard [#13](https://github.com/GFargo/VVV-DevDash/issues/13)
  - [ ] **Dynamically Display Hosts**.
    - [ ] Refactor current code in `content.php` to be in class [#21](https://github.com/GFargo/VVV-DevDash/issues/21)
-   - [x] Add support for multiple domains [#16](https://github.com/GFargo/VVV-DevDash/issues/16)
+   - [x] Add support for multiple domains [#16](https://github.com/GFargo/VVV-DevDash/issues/16) 
  - [x] Seemless experience when using system tools provided by VVV. _note: two pages restrict iframe privelages, currently in the process of finding a workaround [#23](https://github.com/GFargo/VVV-DevDash/issues/23)_
 
 

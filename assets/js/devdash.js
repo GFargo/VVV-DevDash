@@ -21,50 +21,6 @@
 (function($) {
 
   var DevDashUtilities = {
-    // Fuzzy Search Functionality
-    'search': {
-      init: function() {
-        $('#search_container').on('keyup change', '.search-input', function(){
-          // pull in the new value
-          console.log('this selector:', $(this).selector.selector);
-          console.log('event:', event);
-
-          var searchTerm = $('.search-input').val(),
-              site_list = $('.sites');
-
-
-          console.log('searchTerm:', searchTerm);
-          console.log('site_list:', site_list);
-
-          // remove any old highlighted terms
-          $(site_list).removeHighlight();
-
-          $('tr').removeClass('highlight');
-
-          // disable highlighting if empty
-          if (searchTerm) {
-            // highlight the new term
-            $(site_list).highlight(searchTerm);
-          }
-
-          // Highlight the table row
-          if ($('.sites td span.highlight').length) {
-
-            $('.sites td span.highlight').closest('tr').addClass('highlight');
-          }
-
-          if ($('.sites table tr').not('.highlight')) {
-            $('.sites tr').addClass('hide');
-          }
-
-          $('.sites tr.highlight').removeClass('hide');
-
-          if($('#text-search').val() === '') {
-            $('.sites tr').removeClass('hide');
-          }
-        });
-      },
-    },
     // Header Nav - Pulling in other services on the server via Ajax & Iframe
     'header': {
       init: function() {
@@ -240,8 +196,7 @@
 
       },
       finalize: function() {
-        // Create listener for search fiel
-        DevDashUtilities.search.init();
+
         DevDashUtilities.header.init();
 
       }

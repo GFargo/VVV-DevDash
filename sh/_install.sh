@@ -68,3 +68,21 @@ npm install
 
 echo "...copying dashboard into default root..."
 cp -v ./dashboard-custom.php ../dashboard-custom.php
+
+echo
+echo '----'
+echo 'Creating Cache'
+echo '----'
+
+echo "...removing old cache dir..."
+rm -rf .devdash-cache
+
+echo "...creating cache dir..."
+mkdir .devdash-cache
+
+echo "...setting up cache perms..."
+chmod 755 .devdash-cache
+
+
+
+

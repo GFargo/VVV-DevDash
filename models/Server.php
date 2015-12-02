@@ -5,12 +5,7 @@
  * @author      GFargo <https://github.com/GFargo/>
  *
  */
-
-
-
 require 'models/Site.php';
-
-$path = '../../';
 
 
 /**
@@ -20,8 +15,6 @@ class Server
 {
     public $sites_path = '../../';
 
-    public $hosts = array();
-
     public $sites = array();
 
     public $search_config = array();
@@ -30,17 +23,19 @@ class Server
 
     public $working_directory;
 
-    private $default_hosts;
+    public $default_hosts;
+
+    private $cache_path = '.devdash-cache/site_data.json';
 
     public $_COOKIE;
 
 
-    function __construct()
+
+    public function __construct()
     {
         // Search Config Setup
         $this->search_config = array(
-            // 'scan_depth' => (DEVDASH_SCAN_DEPTH ? DEVDASH_SCAN_DEPTH : '2'),
-            'scan_depth' => '2',
+            'scan_depth' => (DEVDASH_SCAN_DEPTH ? DEVDASH_SCAN_DEPTH : '2'),
             'blacklist' => array(),
             'whitelist' => array( 'vvv-hosts', 'wp-config.php'),
         );
@@ -48,10 +43,10 @@ class Server
         // Setup Default Hosts
         $this->default_hosts = array(
             'dashboard'                 => 'vvv.dev',
-            'wordpress-develop/build'   => 'build.wordpress-develop.dev',
-            'wordpress-develop/src'     => 'src.wordpress-develop.dev',
+            'wordpress-default'         => 'local.wordpress.dev',
             'wordpress-trunk'           => 'local.wordpress-trunk.dev',
-            'wordpress-default'         => 'local.wordpress.dev'
+            'wordpress-develop/src'     => 'src.wordpress-develop.dev',
+            'wordpress-develop/build'   => 'build.wordpress-develop.dev'
         );
 
         $this->getEnvironment();
@@ -60,21 +55,50 @@ class Server
     //
     public function getEnvironment ()
     {
+        // Check for Cache
+        if (!file_exists($this->cache_path) || !isset($_COOKIE['DevDash_Update'])) {
+            $this->parseFiles( $this->scanFiles() );
 
-        $this->parseFiles( $this->scanFiles() );
+            // Store Site Count
+            $this->site_count = count( $this->sites );
+            // Save Site Cache
+            $this->saveCache('DevDash_Update', $this->sites, false);
+        } else {
+            $this->sites = $this->getCache();
+        }
+
+    }
 
 
-        echo "<h3>this->sites</h3>";
-        var_dump($this->sites);
+    private function saveCache ($name = 'DevDash_Update', $data, $force = false)
+    {
+        // echo "<br> ....saving data....<br>";
+        if (!isset($data) || !isset($name)) {
+            throw new Exception("Missing argument to store", 1);
+        }
+        // Save data if forced or cookie currently not present
+        if ($force || !isset($_COOKIE['DevDash_Update'])) {
+            setcookie('DevDash_Update', time(), time()+60*60*24*3); // expire in 3 days
+            // Save Json to Cache File
+            $fp_site_cache = fopen($this->cache_path, 'w');
+            fwrite($fp_site_cache, json_encode($data));
+            fclose($fp_site_cache);
+        }
+    }
 
-        echo "<h3>this->hosts</h3>";
-        var_dump($this->hosts);
 
+    public function getCache()
+    {
+        if (file_exists($this->cache_path)) {
+            // Read Json from Cache File
+            $fp_site_cache = fopen($this->cache_path, 'r');
+            $cache_contents = fread($fp_site_cache, filesize($this->cache_path));
+            fclose($fp_site_cache);
 
-
-        // Store Site Count
-        $this->site_count = count( $this->sites );
-        echo "<h3>Count: $this->site_count</h3>";
+            return json_decode($cache_contents);
+        } else {
+            return false;
+        }
     }
 
     private function parseHost ($host)
@@ -94,9 +118,7 @@ class Server
                 }
 
                 //
-                //
                 // ToDo: Design Flaw - Assumes Host is first entry found in file
-                //
                 //
 
                 if (isset($this->sites[$file_path])) {
@@ -106,11 +128,11 @@ class Server
                         $this->sites[$file_path]->subdomains[$foundHosts-1] = trim( $line );
                     }
                 } elseif( in_array(trim( $line ), $this->default_hosts)) {
-                    echo "WE GOT A DEFAULT: $file_path <br>";
-                    echo "$num \ $line <br>";
+                    // echo "WE GOT A DEFAULT: $file_path <br>";
+                    // echo "$num \ $line <br>";
                 } else {
-                    echo "WTF IS THIS: $file_path <br>";
-                    echo "$num \ $line <br>";
+                    // echo "WTF IS THIS: $file_path <br>";
+                    // echo "$num \ $line <br>";
                 }
 
                 ++$foundHosts;
@@ -233,8 +255,6 @@ class Server
         } else {
             // Site already exists
             return $this->sites[$name];
-
-
         }
     }
 
@@ -273,9 +293,11 @@ class Server
             // Check if file is in search config whitelist
             if ( $this->checkSearchResult($file) ) {
 
-                // {SplFileInfo} $file
-                echo "<h4>File Name: " . $file->getFileName() . "</h4>";
-                echo "<h5>Path: " . $file->getPathname() . "</h5>";
+
+
+
+                // TODO: Refactor into appropriate dialog message
+                echo "<h4>File Name: " . $file->getFileName() . " | Path: " . $file->getPathname() . "</h4>"; // {SplFileInfo} $file
 
                 if ( $file->getFileName() == 'vvv-hosts' ) {
                     $this->parseHost($file);
@@ -333,111 +355,5 @@ class Server
     }
 
 }
-
-
-/**
- * Create an array of the hosts from all of the VVV host files
- *
- * @author         Jeff Behnke <code@validwebs.com>
- * @copyright  (c) 2014 ValidWebs.com
- *
- * Created:    5/23/14, 12:57 PM
- *
- * @param $path
- *
- * @return array
- */
-function get_hosts( $path ) {
-
-    $array = array();
-    $debug = array();
-    $hosts = array();
-    $wp    = array();
-    $depth = 2;
-    $site  = new RecursiveDirectoryIterator( $path, RecursiveDirectoryIterator::SKIP_DOTS );
-    $files = new RecursiveIteratorIterator( $site );
-
-
-    if ( ! is_object( $files ) ) {
-        return null;
-    }
-
-
-    $files->setMaxDepth( $depth );
-
-    // Loop through the file list and find what we want
-    foreach ( $files as $name => $object ) {
-
-
-        if ( strstr( $name, 'vvv-hosts' ) && ! is_dir( 'vvv-hosts' ) ) {
-            echo "<hr><h4>File:</h4>";
-            var_dump($object);
-
-            $lines = file( $name ); // Extra lines from file
-            echo "<h5>Name:</h5>";
-            var_dump($name);
-            $name  = str_replace( array( '../../', '/vvv-hosts' ), array(), $name );
-
-
-            // read through the lines in our host files
-            foreach ( $lines as $num => $line ) {
-                // skip both comment lines and empty lines
-                if ( ! strstr( $line, '#' ) && 'vvv.dev' != trim( $line ) && strlen($line) > 1 ) {
-                    if ( 'vvv-hosts' == $name ) {
-                        switch ( trim( $line ) ) {
-                            case 'local.wordpress.dev' :
-                                $hosts['wordpress-default'] = array( 'host' => trim( $line ) );
-                                break;
-                            case 'local.wordpress-trunk.dev' :
-                                $hosts['wordpress-trunk'] = array( 'host' => trim( $line ) );
-                                break;
-                            case 'src.wordpress-develop.dev' :
-                                $hosts['wordpress-develop/src'] = array( 'host' => trim( $line ) );
-                                break;
-                            case 'build.wordpress-develop.dev' :
-                                $hosts['wordpress-develop/build'] = array( 'host' => trim( $line ) );
-                                break;
-                        }
-                    }
-                    if ( 'vvv-hosts' != $name && !empty($name)) {
-                        if (empty($hosts[ $name ])) {
-                            // array_push($hosts[ $name ], array( 'subdomain' => trim( $line )));
-                            $hosts[ $name ]['host'] =  trim( $line );
-                        } else {
-                            $hosts[ $name ]['subdomain'.$num] = trim( $line );
-                        }
-                    }
-                }
-            }
-        }
-
-        if ( strstr( $name, 'wp-config.php' ) ) {
-
-
-        }
-    }
-
-    foreach ( $hosts as $key => $val ) {
-
-        if ( array_key_exists( $key, $debug ) ) {
-            if ( array_key_exists( $key, $wp ) ) {
-                $array[ $key ] = $val + array( 'debug' => 'true', 'is_wp' => 'true' );
-            } else {
-                $array[ $key ] = $val + array( 'debug' => 'true', 'is_wp' => 'false' );
-            }
-        } else {
-            if ( array_key_exists( $key, $wp ) ) {
-                $array[ $key ] = $val + array( 'debug' => 'false', 'is_wp' => 'true' );
-            } else {
-                $array[ $key ] = $val + array( 'debug' => 'false', 'is_wp' => 'false' );
-            }
-        }
-    }
-
-    $array['site_count'] = count( $hosts );
-
-    return $array;
-}
-
 
 ?>
