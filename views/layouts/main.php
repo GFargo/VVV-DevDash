@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<?php $Dashboard->render('partials/navigation.php'); ?>
+<?php $this->dashboard->render('partials/navigation.php'); ?>
 
 <div class="content_container container-fluid">
 
@@ -37,14 +37,14 @@
         <div class="hosts">
             <div id="main_content" class="main_content">
                 <div class="vvv-module">
-                    <?php //require 'views/partials/content.php'; ?>
-                    <?= $content ?>
+                    <?php require 'views/partials/content.php'; ?>
+                    <?php # echo $content ?>
                 </div>
             </div>
         </div>
     </div> <!-- /.col-sm-8 -->
 </div> <!-- /.content_container -->
 
-<?php $Dashboard->render('partials/footer.php'); ?>
+<?php $this->dashboard->render('partials/footer.php'); ?>
 </body>
 </html>

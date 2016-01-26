@@ -1,5 +1,5 @@
 
-<div class="sidebar-controls" data-step="2" data-html="true" data-intro="<?= $this->tutorial[1]['content']; ?>">
+<div class="sidebar-controls hidden-xs" data-step="2" data-html="true" data-intro="<?= $this->tutorial[1]['content']; ?>">
   <a href="#" alt="open sidebar" class="sidebar-control open">
     <i class="fa fa-caret-square-o-right"></i>
   </a>

@@ -5,7 +5,7 @@
  * @author      GFargo <https://github.com/GFargo/>
  *
  */
-require 'models/Site.php';
+require_once('models/Site.php');
 
 
 /**

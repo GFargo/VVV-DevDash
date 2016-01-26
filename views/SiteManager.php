@@ -1,6 +1,6 @@
 <?php
-require 'views/DashboardView.php';
 
+require_once( __DIR__ . '/DashboardView.php');
 
 
 /**
@@ -33,13 +33,15 @@ class SiteManager extends DashboardView
 
         $SiteDashboard .= '</div>';
 
-        echo $SiteDashboard;
+        return $SiteDashboard;
     }
 
     private function buildSiteCard ($site)
     {
         $outerContainer = new html('div', array( 'class' => 'col-sm-12 col-md-6' ));
         $innerContainer = new html('div', array( 'class' => 'site-card' ));
+
+        $visibleContent = new html('div', array( 'class' => '' ));
 
         $lock = new html('h2', array(
             'class' => 'lock',
@@ -58,6 +60,7 @@ class SiteManager extends DashboardView
         $wpAdminButton = new html('li', array( 'text' => $this->btnWordpressAdmin($site) ));
         $siteButton = new html('li', array( 'text' =>  $this->btnSite($site) ));
         $gitButton = ($this->btnGit($site) ? new html('li', array( 'text' => $this->btnGit($site) )) : '');
+        $gitPanel = $this->gitPanel($site);
         $subdomainsButton = ($this->btnSubdomains($site) ? new html('li', array( 'text' => $this->btnSubdomains($site) )) : '');
 
         $ul->append($debugButton)
@@ -66,9 +69,12 @@ class SiteManager extends DashboardView
             ->append($gitButton)
             ->append($siteButton);
 
-        $innerContainer->append($lock)
+        $visibleContent->append($lock)
                         ->append($title)
                         ->append($ul);
+
+        $innerContainer->append($visibleContent)
+                        ->append($gitPanel);
 
         $outerContainer->append($innerContainer);
         return $outerContainer;
@@ -79,23 +85,23 @@ class SiteManager extends DashboardView
     {
         $searchContainer = new html('div', array(
             'id' => 'search_container',
-            'class' => 'input-group search-box'
+            'class' => 'search-box'
         ));
         $searchIcon = new html('span', array(
-            'class' => 'input-group-addon',
+            'class' => 'search-icon',
             'text'  => '<i class="fa fa-search"></i>',
         ));
 
         $searchInput = new html('input', array(
-            'id' => 'text-search',
-            'class' => 'form-control search-input',
+            'id' => 'search_host',
+            'class' => 'search-input',
             'type' => 'text',
             'placeholder' => 'Search active machines...',
         ));
 
         $totalHosts = new html('span', array(
-            'class' => 'input-group-addon',
-            'text'  => 'Hosts <span class="badge">' . (isset( $this->site_count ) ? $this->site_count : '') . '</span>',
+            'class' => 'search-badge badge',
+            'text'  => '<i class="fa fa-cubes"></i>' . (isset( $this->site_count ) ? $this->site_count : ''),
         ));
 
         $searchContainer->append($searchIcon)
@@ -114,35 +120,103 @@ class SiteManager extends DashboardView
             $text = '<i class="fa fa-git"></i>';
             $title = 'Git Controlled WP_Content';
 
+            $gitButton = new html('a', array(
+                'class'             => 'btn-card',
+                'role'              => 'button',
+                'data-toggle'       => 'collapse',
+                'href'              => '#git_'.$site->name,
+                'aria-expanded'     => 'false',
+                'aria-controls'     => 'collapseGitContainer',
+                'title'             => htmlentities($title),
+                'text'              => $text
+            ));
+
+        }
+        return $gitButton;
+    }
+
+    private function gitPanel ($site)
+    {
+        $gitContentContainer = '';
+        // var_dump($site);
+        if ($site->git) {
+            $text = '<i class="fa fa-git"></i>';
+            $title = 'Git Controlled WP_Content';
+
             $gitContentContainer = new html('div', array(
-                'class' => '',
+                'class' => 'collapse ',
+                'id'    => 'git_'.$site->name,
+            ));
+
+            $innerContainer = new html('div', array(
+                'class' => 'options-tab',
             ));
 
 
             $repo = Git::open('../../'.$site->name.'/htdocs/wp-content');  // -or- Git::create('/path/to/repo')
 
             // $status = $repo->status();
-            print_r($repo->list_branches(true));
+
+            // Git Active Branch
+            $activeBranch = new html('code', array(
+                'text' => 'current branch: ' . $repo->active_branch(),
+                'class' => 'git-branch'
+            ));
+
+            // Git Repo Controls
+            $repoControls = new html('div', array(
+                'class' => ''
+            ));
+
+            $pullBtn = new html('a', array(
+                'class' => 'btn git-pull btn-primary btn-sm',
+                'text' => 'Pull',
+                'disabled' => 'disabled',
+                'data-git-path' => '../../../'.$site->name.'/htdocs/wp-content'
+            ));
+
+            // $refreshBtn = new html('a', array(
+            //     'class' => 'btn btn-info btn-sm',
+            //     'text' => 'Refresh'
+            // ));
+
+
+
+            $repoControls->append($pullBtn);
+
+
+            // Git Commit Log
+            $commitLog = explode(PHP_EOL, $repo->run('log -6 --oneline'));
+
+            array_pop($commitLog);
+
+            $commitsHtml = new html('ul', array(
+                'class' => 'list-unstyled compact'
+            ));
+
+            foreach ($commitLog as $key => $logEntry) {
+                $entry = new html('li', array(
+                    'text' => $logEntry,
+                    'class' => 'compact'
+                ));
+                $commitsHtml->append($entry);
+            }
+
+
             // $repo->add('.');
             // $repo->commit('Some commit message');
             // $repo->push('origin', 'master');
 
-            $gitContentContainer->append();
 
-            $gitButton = new html('a', array(
-                'class'             => 'btn-card tip pop',
-                'data-container'    => 'body',
-                'data-toggle'       => 'popover',
-                'data-html'         => 'true',
-                'data-placement'    => 'top',
-                'href'              => '#',
-                'title'             => htmlentities($title),
-                'data-content'      => htmlentities($gitContentContainer),
-                'text'              => $text
-            ));
+            // Add Elements to Git HTML Container
+            $innerContainer->append($activeBranch)
+                            ->append($repoControls)
+                            ->append($commitsHtml);
+
+            $gitContentContainer->append($innerContainer);
 
         }
-        return $gitButton;
+        return $gitContentContainer;
     }
 
     private function getHost ($site)

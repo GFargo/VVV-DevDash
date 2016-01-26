@@ -10,6 +10,9 @@ define('DEVDASH_XDEBUG', "false");
 // Server Settings
 define('DEVDASH_SCAN_DEPTH', 2);
 
+// DevDash Path
+define('DEVDASH_ROOT', __DIR__);
+
 
 /*
 * DevDash Config

@@ -156,6 +156,37 @@
 
     },
 
+
+    'git': {
+      init: function() {
+        $('.git-pull').click(function(event) {
+
+          console.log('çlicked', event);
+          var path = $(this).attr('data-git-path');
+
+          if (!$(this).attr('disabled')) {
+
+            $.ajax({
+              url: '/dashboard/components/GitAjax.php',
+              type: 'POST',
+              data: { path: path },
+            })
+            .done(function(data) {
+              console.log("success", data);
+            })
+            .fail(function(data) {
+              console.log("error", data);
+            })
+            .always(function(data) {
+              console.log("complete", data);
+            });
+
+          }
+        });
+      }
+    },
+
+
     'notify': {
       basic: function () {
         // $.notify({
@@ -249,6 +280,7 @@
         // Create listener for search fiel
 
         DevDashUtilities.header.init();
+        DevDashUtilities.git.init();
 
       }
     },

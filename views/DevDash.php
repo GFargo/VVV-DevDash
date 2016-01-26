@@ -1,16 +1,18 @@
 <?php
-/**
-* DevDash
-*/
 
-require 'components/html.class.php';
-require 'components/Git.php';
-require 'models/Server.php';
-require 'views/SiteManager.php';
-require 'controllers/DashboardController.php';
+require_once('components/html.class.php');
+require_once('components/Git.php');
+
+require_once('controllers/DashboardController.php');
+require_once('models/Server.php');
+require_once('views/SiteManager.php');
 
 class DevDash
 {
+    /**
+    * DevDash
+    */
+
 
     // DevDash Controller
     public $controller;
@@ -33,28 +35,22 @@ class DevDash
 
         $this->tutorial = $config['tutorial_steps'];
 
+        // Load Data and pass into Main
+        $this->dashboard = new SiteManager([
+            'site_count'    => $this->server->site_count,
+            'sites'         => $this->server->sites,
+            'default_hosts' => $this->server->default_hosts,
+        ]);
+
+
+
+        require $this->layout;
 
         // echo "Route: ";
         // var_dump($this->controller->getRoute());
 
     }
 
-    public function run ()
-    {
-
-        /// Determine Route Information
-
-        // Load Data and pass into Main
-        $Dashboard = new SiteManager([
-            'site_count'    => $this->server->site_count,
-            'sites'         => $this->server->sites,
-            'default_hosts' => $this->server->default_hosts,
-        ]);
-
-        require $this->layout;
-
-
-    }
 
 }
 

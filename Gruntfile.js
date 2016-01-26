@@ -78,7 +78,7 @@ module.exports = function(grunt) {
   });
 
   // Final Build
-  grunt.registerTask('dist', 'Compiles all files for live environment', function() {
+  grunt.registerTask('build', 'Compiles all files for live environment', function() {
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.task.run('sass:dist','autoprefixer:dist', 'js-dist');
