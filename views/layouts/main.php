@@ -13,11 +13,7 @@
     <script type="text/JavaScript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap.js -->
     <script type="text/JavaScript" src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
-    <!-- Intro.js -->
-    <script type="text/JavaScript" src="bower_components/intro.js/minified/intro.min.js"></script>
-    <script type="text/JavaScript" src="bower_components/underscore/underscore-min.js"></script>
-    <!-- DevDash Javascript -->
-    <script type="text/javascript" src="assets/js/devdash.js"></script>
+
 </head>
 <body>
 
@@ -46,5 +42,12 @@
 </div> <!-- /.content_container -->
 
 <?php $this->dashboard->render('partials/footer.php'); ?>
+
+
+<!-- Intro.js -->
+<script type="text/JavaScript" src="bower_components/intro.js/minified/intro.min.js"></script>
+<script type="text/JavaScript" src="bower_components/underscore/underscore-min.js"></script>
+<!-- DevDash Javascript -->
+<script type="text/javascript" src="assets/js/devdash.js"></script>
 </body>
 </html>

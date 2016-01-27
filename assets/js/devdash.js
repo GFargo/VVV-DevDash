@@ -7,6 +7,108 @@
  */
 
 
+/*
+* @Author: gfargo
+* @Date:   2016-01-26 19:08:14
+* @Last Modified by:   Griffen Fargo
+* @Last Modified time: 2016-01-27 13:39:38
+*/
+
+
+
+// (function ($) {
+
+// $.expr[':'].Contains = function(a,i,m){
+//     return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+// };
+
+// $.fn.extend( {
+//     fuzzySearch: function(list, list_element, search_selector) {
+//     	var search = this,
+//     		// form = $("<form>").attr({"class":"filterform","action":"#"}),
+//     	    // input = $("<input>").attr({"class":"filterinput","type":"text"}),
+//     	    list_element = (typeof list_element !== undefined ? list_element : 'li');
+//     	    targetSelector = (typeof search_selector !== undefined ? search_selector : '.fuzzy-index');
+
+//     	console.log('Fuzzy Search Started! ', this, list, search_selector);
+
+//     	$(this)
+//     	  .change( function () {
+//     	    var filter = $(this).val();
+//     	    if(filter) {
+//     	    	console.log('anything?!');
+//     	    	$(list).find(list_element).each(function(index, el) {
+//     	    		console.log('this return: ', $(el).find(targetSelector + ":not(:Contains(" + filter + "))"))
+
+//     	    		$(el).find(targetSelector + ":not(:Contains(" + filter + "))").parent().parent().slideUp();
+//     	    		$(el).find(targetSelector + ":Contains(" + filter + ")").parent().parent().slideDown();
+//     	    	});
+//     	    } else {
+//     	      $(list).find(list_element).slideDown();
+//     	    }
+
+//     	  })
+//     	.keyup( function () {
+//     		console.log('KeyUp!')
+//     	    $(this).change();
+//     	}).keydown( function () {
+//     		console.log('KeyDown')
+//     	    $(this).change();
+//     	});
+//     },
+// });
+
+// }(jQuery));
+
+
+(function ($) {
+
+	jQuery.expr[':'].Contains = function(a,i,m){
+		return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+	};
+
+	function updateSiteCount(list, list_element) {
+		var count = 0;
+		$(list).find(list_element).each(function(index, el) {
+			if ($(el).is(':visible')) {
+				count++;
+			}
+		});
+		return count;
+	}
+
+	function listFilter(input, list, list_element, search_selector) {
+		var search = input,
+			// form = $("<form>").attr({"class":"filterform","action":"#"}),
+		    // input = $("<input>").attr({"class":"filterinput","type":"text"}),
+		    list_item = (typeof list_element !== undefined ? list_element : 'li');
+		    targetSelector = (typeof search_selector !== undefined ? search_selector : '.fuzzy-index');
+
+		$(input).on("change paste keyup", function () {
+		    var filter = $(input).val();
+		    if(filter) {
+		    	$(list).find(list_item).each(function(index, el) {
+		    		$(el).find(targetSelector + ":not(:Contains(" + filter + "))").parent().parent().parent().slideUp('fast');
+		    		$(el).find(targetSelector + ":Contains(" + filter + ")").parent().parent().parent().slideDown('fast');
+		    	});
+		    } else {
+		    	$(list).find(list_item).each(function(index, el) {
+		      		$(el).slideDown('fast');
+		      	});
+		    }
+
+		    setTimeout(function() {
+		    	$('#search_container').find('.site-count').text(updateSiteCount(list, list_item));
+		    }, 150);
+		});
+  	}
+
+
+	$(function () {
+		listFilter($('#search_host'), $('.card-container'), '> div', '.fuzzy-index');
+	});
+}(jQuery));
+
 /* ========================================================================
  * DOM-based Routing
  * Based on http://goo.gl/EUTi53 by Paul Irish
@@ -275,6 +377,7 @@
         // });
 
 
+
       },
       finalize: function() {
         // Create listener for search fiel
@@ -329,83 +432,3 @@
 })(jQuery);
 
 // Fully reference jQuery after this point
-$.fn.highlight = function (pat) {
-	function innerHighlight(node, pat) {
-		var skip = 0;
-		if (node.nodeType === 3) {
-			var pos = node.data.toUpperCase().indexOf(pat);
-			if (pos >= 0) {
-				var spannode = document.createElement('span');
-				spannode.className = 'highlight';
-				var middlebit = node.splitText(pos);
-				var endbit = middlebit.splitText(pat.length);
-				var middleclone = middlebit.cloneNode(true);
-				spannode.appendChild(middleclone);
-				middlebit.parentNode.replaceChild(spannode, middlebit);
-				skip = 1;
-			}
-		}
-		else if (node.nodeType === 1 && node.childNodes && !/(script|style)/i.test(node.tagName)) {
-			for (var i = 0; i < node.childNodes.length; ++i) {
-				i += innerHighlight(node.childNodes[i], pat);
-			}
-		}
-		return skip;
-	}
-
-	return this.each(function () {
-		innerHighlight(this, pat.toUpperCase());
-	});
-};
-
-$.fn.removeHighlight = function () {
-	function newNormalize(node) {
-		for (var i = 0, children = node.childNodes, nodeCount = children.length; i < nodeCount; i++) {
-			var child = children[i];
-			if (child.nodeType === 1) {
-				newNormalize(child);
-				continue;
-			}
-			if (child.nodeType !== 3) {
-				continue;
-			}
-			var next = child.nextSibling;
-			if (next == null || next.nodeType !== 3) {
-				continue;
-			}
-			var combined_text = child.nodeValue + next.nodeValue;
-			new_node = node.ownerDocument.createTextNode(combined_text);
-			node.insertBefore(new_node, child);
-			node.removeChild(child);
-			node.removeChild(next);
-			i--;
-			nodeCount--;
-		}
-	}
-
-	return this.find("span.highlight").each(function () {
-		var thisParent = this.parentNode;
-		thisParent.replaceChild(this.firstChild, this);
-		newNormalize(thisParent);
-	}).end();
-};
-
-$.fn.scrollViewUp = function () {
-	return this.each(function () {
-		$('.sites').animate({
-			scrollTop: $(this).offset().top
-		}, 1000);
-	});
-};
-
-$.fn.scrollViewDown = function () {
-	var sites_list = $('.sites');
-
-	var scrollBottom = $(sites_list).height() - $(sites_list).height() - $(sites_list).scrollTop();
-	return this.each(function () {
-		$('.sites').animate({
-			scrollTop: scrollBottom
-		}, 1000);
-	});
-};
-

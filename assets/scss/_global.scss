@@ -105,7 +105,7 @@ a {
         }
     }
     &.compact {
-        max-height: 70px;
+        max-height: 86px;
         overflow: scroll;
         margin-top: 6px;
         margin-bottom: 0;
@@ -210,7 +210,9 @@ a {
 
 
 
-
+.card-container {
+    min-height: 400px;
+}
 
 
 
@@ -229,7 +231,7 @@ a {
     }
 
     .options-tab {
-        padding: 16px;
+        padding: 8px;
     }
     .git-branch {
         float: right;

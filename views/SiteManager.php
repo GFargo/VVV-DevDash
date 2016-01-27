@@ -49,8 +49,9 @@ class SiteManager extends DashboardView
         ));
 
         $title = new html('h4', array(
-            'class' => 'title',
-            'text' =>  $this->getHost($site)
+            'class' => 'title fuzzy-index',
+            'data-title' => $this->getHost($site),
+            'text' =>  $this->getHost($site),
         ));
 
 
@@ -101,7 +102,7 @@ class SiteManager extends DashboardView
 
         $totalHosts = new html('span', array(
             'class' => 'search-badge badge',
-            'text'  => '<i class="fa fa-cubes"></i>' . (isset( $this->site_count ) ? $this->site_count : ''),
+            'text'  => '<i class="fa fa-cubes"></i><span class="site-count">' . (isset( $this->site_count ) ? $this->site_count : '') . '</span>',
         ));
 
         $searchContainer->append($searchIcon)
