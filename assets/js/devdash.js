@@ -216,7 +216,6 @@
           console.log('Running Something! Data:', Data);
 
           var command = Data.command,
-              target = Data.target,
               options = Data.options;
 
           $.ajax({
@@ -224,9 +223,8 @@
             type: 'POST',
             dataType: 'html',
             data: {
-              command_target: target,
-              shell_command: command,
-              command_options: options,
+              command: command,
+              options: options,
             }
           })
           .done(function(response) {
@@ -238,6 +236,28 @@
           .always(function() {
             console.log("complete");
           });
+
+      },
+
+      toggleXDebug: function () {
+        var self = this;
+        console.log('-- Toggling XDebug --');
+
+        $('.cmd-xdebug').click(function(event) {
+          /* Act on the event */
+
+          console.log('clicked', event);
+          var state = $(this).attr('data-state');
+
+          var removeQuery = {
+            command: 'xdebug',
+          };
+
+          console.log('RemoveQuery: ', removeQuery);
+
+          self.run(removeQuery);
+
+        });
 
       },
 
@@ -253,14 +273,12 @@
         this.run(removeQuery);
       }
 
-
-
-
     },
 
 
     'git': {
       init: function() {
+
         $('.git-pull').click(function(event) {
 
           console.log('çlicked', event);
@@ -356,15 +374,15 @@
           $content.toggleClass('full');
         });
 
-        $('.remove-host' ,'.sites').click(function(event) {
-          event.preventDefault();
-          console.log('event target', event.target);
-          console.log('event data', $(event.target).attr('data-host'));
-          var site = $(event.target).attr('data-host');
+        // $('.remove-host' ,'.sites').click(function(event) {
+        //   event.preventDefault();
+        //   console.log('event target', event.target);
+        //   console.log('event data', $(event.target).attr('data-host'));
+        //   var site = $(event.target).attr('data-host');
 
-          DevDashUtilities.shell.removeSite(site);
+        //   DevDashUtilities.shell.removeSite(site);
 
-        });
+        // });
 
         // Activate Tooltips
         $('.tip.tool').tooltip();
@@ -383,7 +401,8 @@
         // Create listener for search fiel
 
         DevDashUtilities.header.init();
-        DevDashUtilities.git.init();
+        // DevDashUtilities.git.init();
+        DevDashUtilities.shell.toggleXDebug();
 
       }
     },

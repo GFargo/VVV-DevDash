@@ -61,7 +61,6 @@ class SiteManager extends DashboardView
         $wpAdminButton = new html('li', array( 'text' => $this->btnWordpressAdmin($site) ));
         $siteButton = new html('li', array( 'text' =>  $this->btnSite($site) ));
         $gitButton = ($this->btnGit($site) ? new html('li', array( 'text' => $this->btnGit($site) )) : '');
-        $gitPanel = $this->gitPanel($site);
         $subdomainsButton = ($this->btnSubdomains($site) ? new html('li', array( 'text' => $this->btnSubdomains($site) )) : '');
 
         $ul->append($debugButton)
@@ -74,8 +73,14 @@ class SiteManager extends DashboardView
                         ->append($title)
                         ->append($ul);
 
+        // Control Panels
+        $gitPanel = $this->gitPanel($site);
+        $debugPanel = $this->debugPanel($site);
+
+        // Inner Content
         $innerContainer->append($visibleContent)
-                        ->append($gitPanel);
+                        ->append($gitPanel)
+                        ->append($debugPanel);
 
         $outerContainer->append($innerContainer);
         return $outerContainer;
@@ -119,7 +124,7 @@ class SiteManager extends DashboardView
         // var_dump($site);
         if ($site->git) {
             $text = '<i class="fa fa-git"></i>';
-            $title = 'Git Controlled WP_Content';
+            $title = 'Git Control Panel';
 
             $gitButton = new html('a', array(
                 'class'             => 'btn-card',
@@ -161,7 +166,7 @@ class SiteManager extends DashboardView
             // Git Active Branch
             $activeBranch = new html('code', array(
                 'text' => 'current branch: ' . $repo->active_branch(),
-                'class' => 'git-branch'
+                'class' => 'options-label git-branch'
             ));
 
             // Git Repo Controls
@@ -227,51 +232,90 @@ class SiteManager extends DashboardView
 
     private function btnDebug ($site)
     {
+        $debugButton = '';
+        // var_dump($site);
 
-        if ( 'true' == $site->debug ) {
-            $title = '<i class="fa fa-check-circle-o"></i> WP_DEBUG Enabled';
-            $text = '<i class="fa fa-check-circle-o"></i>';
-        } else {
-            $title = '<i class="fa fa-times-circle-o"></i> WP_DEBUG Disabled';
-            $text = '<i class="fa fa-times-circle-o"></i>';
-        }
-
-        $debugContentContainer = new html('div', array(
-            'class' => '',
-        ));
-
-        $debugContentContainer->append($this->btnXDebug($site));
+        $text = '<i class="fa fa-bug"></i>';
+        $title = 'Debug Control Panel';
 
         $debugButton = new html('a', array(
-            'class'             => 'btn-card tip pop',
-            'data-container'    => 'body',
-            'data-toggle'       => 'popover',
-            'data-html'         => 'true',
-            'data-placement'    => 'top',
-            'href'              => '#',
+            'class'             => 'btn-card',
+            'role'              => 'button',
+            'data-toggle'       => 'collapse',
+            'href'              => '#debug_'.$site->name,
+            'aria-expanded'     => 'false',
+            'aria-controls'     => 'collapseDebugContainer',
             'title'             => htmlentities($title),
-            'data-content'      => htmlentities($debugContentContainer),
             'text'              => $text
         ));
 
         return $debugButton;
     }
 
-    private function btnXDebug ($site)
+
+    private function debugPanel ($site)
     {
+
+        if ( 'true' == $site->debug ) {
+            // Wordpress Debug Settings
+            $wpDebugLabel = new html('code', array(
+                'text' => '<i class="fa fa-check-circle-o"></i> WP_DEBUG Enabled',
+                'class' => 'options-label enabled'
+            ));
+
+            $text = '<i class="fa fa-check-circle-o"></i> xdebug';
+        } else {
+            // Wordpress Debug Settings
+            $wpDebugLabel = new html('code', array(
+                'text' => '<i class="fa fa-times-circle-o"></i> WP_DEBUG Disabled',
+                'class' => 'options-label'
+            ));
+
+            $text = '<i class="fa fa-times-circle-o"></i> xdebug';
+        }
+
+        $debugContentContainer = new html('div', array(
+            'class' => 'collapse ',
+            'id'    => 'debug_'.$site->name,
+        ));
+
+        $innerContainer = new html('div', array(
+            'class' => 'options-tab',
+        ));
+
+        $debugButtonContainer = new html('div', array(
+            'class' => 'btn-group',
+            'role' => 'group',
+            'aria-label' => 'Debugging Options Button Group'
+        ));
+
+
         $xDebugBtn = new html('a', array(
-            'class' => 'btn-card tip tool',
+            'class' => 'btn btn-primary btn-sm cmd-xdebug',
+            'text' => $text,
+            'data-state' => 'on'
+        ));
+
+        $xDebugProfile = new html('a', array(
+            'class' => 'btn btn-success btn-sm',
             'href' => 'http://' . $site->host . '/?XDEBUG_PROFILE',
             'target' => '_blank',
             'data-placement' => 'top',
             'data-toggle' => 'tooltip',
-            'title' => '`xdebug_on` must be turned on in VM',
-            'text' => 'Site Profiler <i class="fa fa-search-plus"></i>',
+            'title' => 'View Site Debug Profile',
+            'text' => '<i class="fa fa-search-plus"></i> Profiler View',
         ));
 
-        return $xDebugBtn;
-    }
+        $debugButtonContainer->append($xDebugBtn)
+                             ->append($xDebugProfile);
 
+        $innerContainer->append($wpDebugLabel)
+                        ->append($debugButtonContainer);
+
+        $debugContentContainer->append($innerContainer);
+
+        return $debugContentContainer;
+    }
 
     private function btnSubdomains ($site)
     {

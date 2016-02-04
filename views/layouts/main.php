@@ -22,14 +22,14 @@
 <div class="content_container container-fluid">
 
     <!-- sidebar -->
-    <div class="col-sm-4 col-md-3 sidebar open">
+    <div class="col-sm-4 col-md-3 col-lg-2 sidebar open">
         <div>
             <?php require ('views/partials/sidebar.php'); ?>
         </div>
     </div>
 
     <!-- main content -->
-    <div class="col-sm-8 col-sm-offset-4 col-md-9 col-md-offset-3 main">
+    <div class="col-sm-8 col-sm-offset-4 col-md-9 col-md-offset-3 col-lg-offset-2 col-lg-10 main">
         <div class="hosts">
             <div id="main_content" class="main_content">
                 <div class="vvv-module">

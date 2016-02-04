@@ -1,5 +1,8 @@
 <?php
 
+// Load Composer Plugins
+require 'vendor/autoload.php';
+
 // Load Dashboard Configs
 $config = require('config/DevDash/config.php');
 
@@ -8,9 +11,5 @@ require('views/DevDash.php');
 
 $DevDash = new DevDash($config);
 
-
-// $DevDash->run(); // Triggers startup of DevDash & output of HTML
-
-// $DevDash->render();
 
 ?>
