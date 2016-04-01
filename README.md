@@ -33,12 +33,21 @@ _This will clone DevDash into `/default/` directory and run `_install.sh` script
 
 After the install script has completed you can fire up vagrant via `vagrant up` you should be able browse to [vvv.dev](http://vvv.dev) and begin using DevDash.
 
-![image](https://raw.githubusercontent.com/gfargo/VVV-DevDash/master/screenshot.png)
+![image](http://cdn.griffenfargo.com/wp-content/uploads/sites/4/2016/03/DevDash-Dashboard.jpg)
+
+
+
+
 
 ---
 
 
 ## DevDash Features
+
+#### Fuzzy Search
+
+![image](http://griffenfargo.com/wp-content/uploads/sites/4/2016/03/DevDash-FuzzySearch.gif)
+
 
 #### Dynamic Machine Display
 
@@ -59,6 +68,12 @@ _If you currenty do not have VVV Site Wizard installed, you can install it [here
 
 
 ### Change Log
+---
+1/12/2016
+
+ * Added Live Fuzzy Search 
+ * Redesigned UI for Site Display
+ * Refactors significant core code to closer resemble an MVC structure.
 
 ---
 11/21/2015
