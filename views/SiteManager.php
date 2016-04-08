@@ -106,9 +106,30 @@ class SiteManager extends DashboardView
         ));
 
         $totalHosts = new html('span', array(
-            'class' => 'search-badge badge',
-            'text'  => '<i class="fa fa-cubes"></i><span class="site-count">' . (isset( $this->site_count ) ? $this->site_count : '') . '</span>',
+            'class' => 'search-badge badge'
         ));
+
+        $hostCount = new html('span', array(
+            'class' => 'site-count',
+            'text'  => ( $this->site_count ? $this->site_count : ''),
+        ));
+
+        $hostIcons = new html('span', array(
+            'class' => 'controls',
+            'text'  => '<i class="fa fa-cubes"></i>',
+        ));
+
+        $clearCacheButton = new html('a', array(
+            'class' => 'delete-cache',
+            'alt'   => 'Clear Site Cache',
+            'text'  => '<i class="fa fa-refresh"></i>',
+        ));
+
+        $hostIcons->append($clearCacheButton);
+
+        $totalHosts->append($hostCount)
+                    ->append($hostIcons);
+
 
         $searchContainer->append($searchIcon)
                         ->append($searchInput)

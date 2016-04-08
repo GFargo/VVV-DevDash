@@ -45,10 +45,6 @@ class DevDash
 
 
         require $this->layout;
-
-        // echo "Route: ";
-        // var_dump($this->controller->getRoute());
-
     }
 
 

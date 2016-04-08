@@ -172,8 +172,36 @@ a {
         background: none;
         color: $brand-primary;
         .fa {
-            margin-right: 4px;
+            margin-right: 12px;
         }
+        &:hover {
+            .controls { text-indent: -20px; }
+        }
+    }
+    .controls {
+        -webkit-transition: text-indent .2s ease-out;
+           -moz-transition: text-indent .2s ease-out;
+            -ms-transition: text-indent .2s ease-out;
+             -o-transition: text-indent .2s ease-out;
+                transition: text-indent .2s ease-out;
+        width: 32px;
+        overflow: hidden;
+        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
+
+        .delete-cache,
+        .fa{
+            display: inline-block;
+            vertical-align: top;
+            width: 32px;
+            font-size: 1.2em;
+            line-height: 32px;
+            cursor: pointer;
+        }
+    }
+    .delete-cache {
+
     }
     .search-input {
         width: 100%;

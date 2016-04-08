@@ -74,7 +74,7 @@ class Server
     private function saveCache ($name = 'DevDash_Update', $data, $force = false)
     {
         // echo "<br> ....saving data....<br>";
-        if (!isset($data) || !isset($name)) {
+        if (!isset($data)) {
             throw new Exception("Missing argument to store", 1);
         }
         // Save data if forced or cookie currently not present

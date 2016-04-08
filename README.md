@@ -5,12 +5,27 @@ This is a Varying Vagrant Vagrants Dashboard for the most excellent [Varying Vag
 The purpose of DevDash is to offer a collection of tools that assit in the learning curve and alleviate many of the pain points when using VVV for development.  DevDash does the heavy lifting.
 
 ### Goals:
- - [ ] Rewrite entire dashboard to follow MVC ideology
  - [ ] Creating new Hosts using VV Site Wizard [#13](https://github.com/GFargo/VVV-DevDash/issues/13)
+ - [ ] Management Panels
+   - [ ] Git Panel
+     - [ ] Run Git Pull from DevDash
+     - [x] Display recent commit history
+     - [x] Display current branch
+   - [ ] Debug Panel
+     - [ ] Activate XDebug from DevDash
+     - [x] Display status of WP_Debug
+     - [x] Display status of XDebug
+   - [ ] WPMU Panel
+     - [ ] Add new subdomains from DevDash
+     - [x] Display current Subdomains
  - [ ] **Dynamically Display Hosts**.
-   - [ ] Refactor current code in `content.php` to be in class [#21](https://github.com/GFargo/VVV-DevDash/issues/21)
+   - [x] Refactor current code in `content.php` to be in class [#21](https://github.com/GFargo/VVV-DevDash/issues/21)
    - [x] Add support for multiple domains [#16](https://github.com/GFargo/VVV-DevDash/issues/16) 
  - [x] Seemless experience when using system tools provided by VVV. _note: two pages restrict iframe privelages, currently in the process of finding a workaround [#23](https://github.com/GFargo/VVV-DevDash/issues/23)_
+ - [x] Rewrite entire dashboard to follow MVC ideology
+ - [x] Create Site Cache
+   - [x] Automatic Site Detection
+   - [x] Create 'Refresh Cache' Button
 
 
 
@@ -68,6 +83,14 @@ _If you currenty do not have VVV Site Wizard installed, you can install it [here
 
 
 ### Change Log
+
+
+---
+4/8/2016
+
+ * Added 'Clear Cache' button next to Site Count
+ * Added Cookie handler functions to DevDashUtilities Javascript object.
+
 ---
 1/12/2016
 

@@ -1,8 +1,17 @@
 <div class="header-nav navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="./"><i class="fa fa-home"></i></a>
-        </div>
+    <div class="navbar-header">
+        <a class="navbar-brand" href="./"><i class="fa fa-home"></i></a>
 
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#devdash_navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="devdash_navbar">
         <ul class="nav navbar-nav">
             <li>
                 <a class="nav-link" name="phpMyAdmin" href="/database-admin/">
@@ -40,5 +49,5 @@
                 </a>
             </li>
         </ul>
-
+    </div>
 </div>
