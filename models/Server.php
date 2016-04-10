@@ -294,11 +294,9 @@ class Server
             // Check if file is in search config whitelist
             if ( $this->checkSearchResult($file) ) {
 
-
-
-
+                // TODO
                 // TODO: Refactor into appropriate dialog message
-                echo "<h4>File Name: " . $file->getFileName() . " | Path: " . $file->getPathname() . "</h4>"; // {SplFileInfo} $file
+                // echo "<h4>File Name: " . $file->getFileName() . " | Path: " . $file->getPathname() . "</h4>"; // {SplFileInfo} $file
 
                 if ( $file->getFileName() == 'vvv-hosts' ) {
                     $this->parseHost($file);

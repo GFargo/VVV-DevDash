@@ -6,9 +6,11 @@ The purpose of DevDash is to offer a collection of tools that assit in the learn
 
 ### Goals:
  - [ ] Creating new Hosts using VV Site Wizard [#13](https://github.com/GFargo/VVV-DevDash/issues/13)
+ - [ ] Delete Sites from 'Unlock' button
  - [ ] Management Panels
    - [ ] Git Panel
      - [ ] Run Git Pull from DevDash
+     - [ ] Display current Git Repo name
      - [x] Display recent commit history
      - [x] Display current branch
    - [ ] Debug Panel

@@ -64,6 +64,34 @@ a {
 
 
 /*
+ * Notify JS Styling
+ */
+
+
+.notifyjs-container {
+    .notifyjs-devdash-base > h5 {
+        margin: 0px 0 6px;
+        span {
+           border-bottom: 1px dotted;
+        }
+    }
+    .notifyjs-devdash-base > .text {
+        font-size: .9em;
+        font-weight: 300;
+    }
+    .notify-icon {
+        position: absolute;
+        top: 0px;
+        right: 4px;
+        font-size: 14px;
+    }
+
+}
+
+
+
+
+/*
  * Main content
  */
 
