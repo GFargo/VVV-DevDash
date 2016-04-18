@@ -19,6 +19,11 @@ class SiteManager extends DashboardView
         $this->default_hosts = $params['default_hosts'];
     }
 
+    private function getHost ($site)
+    {
+        return $site->host;
+    }
+
     public function buildDashboard ()
     {
         $SiteDashboard = '';
@@ -35,6 +40,7 @@ class SiteManager extends DashboardView
 
         return $SiteDashboard;
     }
+
 
     private function buildSiteCard ($site)
     {
@@ -136,30 +142,6 @@ class SiteManager extends DashboardView
                         ->append($totalHosts);
 
         return $searchContainer;
-
-    }
-
-    private function btnGit ($site)
-    {
-        $gitButton = '';
-        // var_dump($site);
-        if ($site->git) {
-            $text = '<i class="fa fa-git"></i>';
-            $title = 'Git Control Panel';
-
-            $gitButton = new html('a', array(
-                'class'             => 'btn-card',
-                'role'              => 'button',
-                'data-toggle'       => 'collapse',
-                'href'              => '#git_'.$site->name,
-                'aria-expanded'     => 'false',
-                'aria-controls'     => 'collapseGitContainer',
-                'title'             => htmlentities($title),
-                'text'              => $text
-            ));
-
-        }
-        return $gitButton;
     }
 
     private function gitPanel ($site)
@@ -246,33 +228,6 @@ class SiteManager extends DashboardView
         return $gitContentContainer;
     }
 
-    private function getHost ($site)
-    {
-        return $site->host;
-    }
-
-    private function btnDebug ($site)
-    {
-        $debugButton = '';
-        // var_dump($site);
-
-        $text = '<i class="fa fa-bug"></i>';
-        $title = 'Debug Control Panel';
-
-        $debugButton = new html('a', array(
-            'class'             => 'btn-card',
-            'role'              => 'button',
-            'data-toggle'       => 'collapse',
-            'href'              => '#debug_'.$site->name,
-            'aria-expanded'     => 'false',
-            'aria-controls'     => 'collapseDebugContainer',
-            'title'             => htmlentities($title),
-            'text'              => $text
-        ));
-
-        return $debugButton;
-    }
-
 
     private function debugPanel ($site)
     {
@@ -336,6 +291,51 @@ class SiteManager extends DashboardView
         $debugContentContainer->append($innerContainer);
 
         return $debugContentContainer;
+    }
+
+
+    private function btnGit ($site)
+    {
+        $gitButton = '';
+        if ($site->git) {
+            $text = '<i class="fa fa-git"></i>';
+            $title = 'Git Control Panel';
+
+            $gitButton = new html('a', array(
+                'class'             => 'btn-card',
+                'role'              => 'button',
+                'data-toggle'       => 'collapse',
+                'href'              => '#git_'.$site->name,
+                'aria-expanded'     => 'false',
+                'aria-controls'     => 'collapseGitContainer',
+                'title'             => htmlentities($title),
+                'text'              => $text
+            ));
+
+        }
+        return $gitButton;
+    }
+
+    private function btnDebug ($site)
+    {
+        $debugButton = '';
+        // var_dump($site);
+
+        $text = '<i class="fa fa-bug"></i>';
+        $title = 'Debug Control Panel';
+
+        $debugButton = new html('a', array(
+            'class'             => 'btn-card',
+            'role'              => 'button',
+            'data-toggle'       => 'collapse',
+            'href'              => '#debug_'.$site->name,
+            'aria-expanded'     => 'false',
+            'aria-controls'     => 'collapseDebugContainer',
+            'title'             => htmlentities($title),
+            'text'              => $text
+        ));
+
+        return $debugButton;
     }
 
     private function btnSubdomains ($site)
